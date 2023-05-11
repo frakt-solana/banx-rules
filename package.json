@@ -1,0 +1,17 @@
+{
+  "name": "banx-rules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "glob": "^10.2.3",
+    "lodash": "^4.17.21"
+  }
+}
