@@ -237,7 +237,7 @@ http
     });
     res.end(html);
   })
-  .listen(8080);
+  .listen(process.env.PORT || 8080);
 
 const buildHtml = async (req) => {
   var header = "";
