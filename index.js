@@ -1,11 +1,55 @@
 import pkg from "lodash";
 import http from "http";
-const { find, includes, intersectionBy, isEmpty, orderBy, sample } = pkg;
+const {
+  find,
+  includes,
+  intersectionBy,
+  isEmpty,
+  orderBy,
+  sample,
+  reduce,
+  some,
+} = pkg;
 import { glob, globSync, globStream, globStreamSync, Glob } from "glob";
 import { createCanvas, loadImage } from "canvas";
 import fs from "fs";
 import traits from "./traits.json" assert { type: "json" };
+import airtable from "airtable";
 const out = fs.createWriteStream("test.png");
+
+airtable.configure({
+  endpointUrl: "https://api.airtable.com",
+  apiKey:
+    "patAMXj3c4gedrbRE.5e3eefbdc79625812d0fd2290d103a67d6eb846f3810cdd64696b852a5224e70",
+});
+
+const base = airtable.base("appuQP7QzvQwbl6dP");
+
+const sendToTable = (nft, status) => {
+  base(status).create(
+    [
+      {
+        fields: {
+          Background: nft.Background.Name,
+          Fur: nft.Fur.Fur,
+          Eyes: nft.Eyes.Eyes,
+          Mouth: nft.Mouth.Name,
+          Head: nft.Head.Name,
+          Body: nft.Body.Name,
+        },
+      },
+    ],
+    function (err, records) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      records.forEach(function (record) {
+        console.log(record.getId());
+      });
+    }
+  );
+};
 
 const maxTraitSimilarityRule = (item, collection) => {
   const allowedMatchingTraits = 2;
@@ -29,17 +73,56 @@ const metadataOverridesRule = (item, collection) => {
   }
 };
 
-const excludeTraitsRule = (item) =>
-  some(
-    item.traits,
-    (trait) =>
-      !isEmpty(intersectionBy(trait["Exclude Traits"], item.traits, "Name"))
-  );
+const excludeTraitsRule = (item) => {
+  let result = false;
+  for (const i in item.traits) {
+    const trait = item.traits[i];
+    const traitsToExclude = trait.Exclude.split(",");
+    console.log(trait.Name, traitsToExclude);
+    if (!isEmpty(traitsToExclude[0])) {
+      result = some(traitsToExclude, (traitRuleStr) => {
+        const traitRule = parseTraitFromRule(traitRuleStr);
+        console.log(
+          "# comparing to exclude",
+          item[traitRule.Layer]?.Name,
+          traitRule?.Name
+        );
+        return item[traitRule.Layer]?.Name === traitRule?.Name;
+      });
+    }
+  }
+
+  console.log({ exlude: result });
+  return result;
+};
+
+const forceTraitsRule = (item) => {
+  let result = false;
+  for (const i in item.traits) {
+    const trait = item.traits[i];
+    const traitsToEnforce = trait.Force.split(",");
+    console.log(trait.Name, traitsToEnforce);
+    if (!isEmpty(traitsToEnforce[0])) {
+      result = some(traitsToEnforce, (traitRuleStr) => {
+        const traitRule = parseTraitFromRule(traitRuleStr);
+        console.log(
+          "# comparing to force",
+          item[traitRule.Layer]?.Name,
+          traitRule?.Name
+        );
+        return item[traitRule.Layer]?.Name === traitRule?.Name;
+      });
+    }
+  }
+
+  console.log({ enforce: result });
+  return result;
+};
 
 const excludeLayerRule = (item) => {
   const allNoneTraits = item.traits.reduce((acc, trait) => [
     ...acc,
-    trait["Exclude Layers"],
+    trait["Exclude"],
   ]);
 
   if (
@@ -55,8 +138,13 @@ const excludeLayerRule = (item) => {
 };
 
 const findTraitImageLayer = async (name, type) => {
-  const images = await glob([`layers/${type}/${name}.png`]);
+  const images = await glob([`layers4/${type}/${name}.png`]);
   return images[0];
+};
+
+const parseTraitFromRule = (traitFromRule) => {
+  const arr = traitFromRule.split(":");
+  return { Layer: arr[0], Name: arr[1] };
 };
 
 const BackgroundTraits = traits.filter((trait) => trait.Layer === "Background");
@@ -66,22 +154,7 @@ const EyesTraits = traits.filter((trait) => trait.Layer === "Eyes");
 const HeadTraits = traits.filter((trait) => trait.Layer === "Head");
 const BodyTraits = traits.filter((trait) => trait.Layer === "Body");
 
-console.log({ FurTraits: FurTraits.length });
-
-const renderImage = async () => {
-  const canvas = createCanvas(2048, 2048);
-  const ctx = canvas.getContext("2d");
-
-  // some items for the layers
-  // Background
-  // Fur
-  // Mouth
-  // Eyes
-  // Head
-  // Body
-
-  // create a layer order 1
-
+const getRandomSet = () => {
   const backgroundTrait = sample(
     BackgroundTraits.filter((trait) => trait.Name !== "None")
   );
@@ -91,6 +164,7 @@ const renderImage = async () => {
   );
   const eyesTrait = sample(EyesTraits.filter((trait) => trait.Name !== "None"));
   const headTrait = sample(HeadTraits);
+  //const bodyTrait = BodyTraits.find((t) => t.Name === "Hoodie up (black)");
   const bodyTrait = sample(BodyTraits);
 
   const sampleNFT = {
@@ -106,50 +180,43 @@ const renderImage = async () => {
     ),
   };
 
+  if (excludeTraitsRule(sampleNFT)) {
+    return getRandomSet();
+  }
+
+  if (!forceTraitsRule(sampleNFT)) {
+    return getRandomSet();
+  }
+
   //   !run rules here
+
+  return sampleNFT;
+};
+
+const renderImage = async () => {
+  const canvas = createCanvas(2048, 2048);
+  const ctx = canvas.getContext("2d");
+
+  // some items for the layers
+  // Background
+  // Fur
+  // Mouth
+  // Eyes
+  // Head
+  // Body
+
+  // create a layer order 1
+
+  const sampleNFT = getRandomSet();
 
   for (const trait of sampleNFT.traits) {
     const image = await loadImage(
-      `layers/${trait.Layer}/${trait.Name.toLowerCase()}.png`
+      `layers4/${trait.Layer}/${trait.Name.toLowerCase()}.png`
     );
     ctx.drawImage(image, 0, 0);
   }
-  console.log({ traits: sampleNFT.traits });
+  //console.log({ traits: sampleNFT.traits });
 
-  //  const BackgroundImage = await loadImage(
-  //    `layers/Background/${backgroundTrait.Name.toLowerCase()}.png`
-  //  );
-  //  ctx.drawImage(BackgroundImage, 0, 0);
-
-  //  const FurImage = await loadImage(
-  //    `layers/Fur/${furTrait.Name.toLowerCase()}.png`
-  //  );
-  // ctx.drawImage(FurImage, 0, 0);
-
-  //  const MouthImage = await loadImage(
-  //   `layers/Mouth/${mouthTrait.Name.toLowerCase()}.png`
-  //  );
-  // ctx.drawImage(MouthImage, 0, 0);
-
-  // const EyesImage = await loadImage(
-  //  `layers/Eyes/${eyesTrait.Name.toLowerCase()}.png`
-  //  );
-  //  ctx.drawImage(EyesImage, 0, 0);
-
-  //  const HeadImage = await loadImage(
-  //   `layers/Head/${headTrait.Name.toLowerCase()}.png`
-  // );
-  // ctx.drawImage(HeadImage, 0, 0);
-
-  //  const BodyImage = await loadImage(
-  //   `layers/Cloth/${bodyTrait.Name.toLowerCase()}.png`
-  //  );
-  //  ctx.drawImage(BodyImage, 0, 0);
-
-  //console.log("added layers");
-  //const stream = canvas.createPNGStream();
-  //stream.pipe(out);
-  //out.on("finish", () => console.log("The PNG file was created."));
   const buf2 = canvas.toBuffer("image/png", {
     compressionLevel: 3,
     filters: canvas.PNG_FILTER_NONE,
@@ -177,14 +244,42 @@ const buildHtml = async (req) => {
   var body = "hello";
   try {
     const { image, nft } = await renderImage();
-    console.log({ image, nft });
+    //console.log({ image, nft });
     body = `<img style="width: 600px; height: 600px;" src="data:image/png;base64,${Buffer.from(
       image
     ).toString(
       "base64"
-    )}" /> <div style="display:flex;justify-content:space-around;margin: 50px;"><button style="font-size:40px">Approve</button> <button style="font-size:40px">Reject</button></div>${nft.traits.map(
-      (trait) => `<span>${trait.Layer}: ${trait.Name} </span>`
-    )}`;
+    )}" /> <div style="display:flex;justify-content:space-around;margin: 50px;"><button style="font-size:40px" onclick=send("Approve")>Approve</button> <button style="font-size:40px" onclick=send("Deny")>Deny</button></div>${nft.traits.map(
+      (trait) => `<span>${trait.Layer}: ${trait.Name} </span>
+
+      `
+    )}
+    <script>
+    var nft = ${JSON.stringify(
+      reduce(
+        nft,
+        (res, trait, key) => ({ ...res, [key.toString()]: trait.Name }),
+        {}
+      )
+    )}
+    const send = (base) => {
+      const response = fetch('https://api.airtable.com/v0/appuQP7QzvQwbl6dP/' + base, {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer patAMXj3c4gedrbRE.5e3eefbdc79625812d0fd2290d103a67d6eb846f3810cdd64696b852a5224e70"
+          },
+          body: JSON.stringify({
+              records:[
+                  {fields: nft}
+              ]
+          }), 
+        });
+        
+    }
+    </script>`;
   } catch (error) {
     body = error;
   }
