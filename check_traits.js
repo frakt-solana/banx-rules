@@ -4,7 +4,7 @@ import traits from "./traits.json" assert { type: "json" };
 
 const findTraitImageLayer = async (name, type) => {
   try {
-    const images = await glob([`layers3/${type}/${name}.png`]);
+    const images = await glob([`layers/${type}/${name}.png`]);
 
     return images[0] ? true : false;
   } catch (err) {
