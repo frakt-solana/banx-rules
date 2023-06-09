@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>generator input</title>
+    <style type="text/css">
+    body {
+      margin: 0;
+      padding: 1vw;
+    }
+    div.input-container {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+    div.container {
+      position: relative;
+      display: flex;
+      gap: 1vw 2vw;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      padding: 2vw;
+    }
+    div.container > div {
+      position: relative;
+      border-bottom: 1px solid #CCC;
+    }
+    div.container > div > img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      top: 0; 
+      left: 0;
+    }
+    dl {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: small;
+    }
+    dt, dd {
+      padding: 0;
+      margin: 0;
+    }
+    dt {
+      text-align: right;
+      width: 36%;
+    }
+    dd {
+      text-align: left;
+      font-weight: bold;
+      width: 60%;
+    }
+    menu {
+      display: flex;
+      padding: 0;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    button {
+      width: 36%;
+      padding: 0;
+      margin: 0;
+      color: white;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+    button:first-child {
+      background-color: green;
+    }
+    button:last-child {
+      background-color: red;
+    }
+
+    @media screen and (min-width: 1024px){
+        div.container > div {
+          width: 16vw;
+          padding-top: 16vw;
+        }
+    }
+    @media screen and (max-width: 1023px){
+        div.container > div {
+          width: 75vh;
+          padding-top: 75vh;
+        }
+    }
+  </style>
+</head>
+<body>
+    <div class="input-container">
+    <label>Combinations:</label>
+    <textarea placeholder="Place JSON with traits params" id="input"></textarea>
+    <button onclick="generate()">Generate</button>
+    </div>
+    <div class="container" id="generations-container">
+
+    </div>
+</body>
+<script>
+    const parseTrait = (str) => {
+        const arr = str.split('(');
+        return arr[0].trim();
+    }
+    const generate = () => {
+        try {
+            document.getElementById('generations-container').innerHTML = ''
+            const textArea = document.getElementById("input")?.value
+            const config = JSON.parse(textArea);
+            console.log({config})
+            for (const set of config) {
+                const layers = Object.keys(set);
+                console.log({set, layers});
+                let imageString = ''
+                let traitsString = '';
+
+                for (const i in layers) {
+                    const layer = layers[i];
+                    const trait = parseTrait(set[layer]);
+                    if (['Background', 'Fur', 'Body', 'Mouth', 'Head', 'Eyes'].includes(layer)) {
+                        const imageSrc = `/layers/${layer}/${trait?.toLowerCase()}.png`
+                        imageString += `<img src=${encodeURI(imageSrc)} />`
+                    }
+                    
+                    traitsString += `<dt>${layer}</dt><dd>${trait}</dd>`
+                }
+
+                const finalHtml = `<div>${imageString}<dl>${traitsString}</dl></div>`;
+                document.getElementById('generations-container').innerHTML += finalHtml
+            }
+        } catch (error) {
+            alert(error)
+        }
+        
+    }
+</script>
+</html>

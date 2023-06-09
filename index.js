@@ -1,5 +1,4 @@
 import pkg from "lodash";
-import http from "http";
 import express from "express";
 const {
   shuffle,
@@ -11,14 +10,24 @@ const {
   sample,
   reduce,
   some,
+  every,
 } = pkg;
-import { glob, globSync, globStream, globStreamSync, Glob } from "glob";
-import { createCanvas, loadImage } from "canvas";
+import { glob } from "glob";
 import fs from "fs";
 import traits from "./traits.json" assert { type: "json" };
+import maxedOutTraits from "./maxedOutTraits.json" assert { type: "json" };
 import airtable from "airtable";
+import bodyParser from "body-parser";
+import NodeCache from "node-cache";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 const out = fs.createWriteStream("test.png");
 const app = express();
+const myCache = new NodeCache({ stdTTL: 600, checkperiod: 1200 });
 
 airtable.configure({
   endpointUrl: "https://api.airtable.com",
@@ -27,6 +36,30 @@ airtable.configure({
 });
 
 const base = airtable.base("appuQP7QzvQwbl6dP");
+
+const loadAndSaveApprovedSheet = async () => {
+  try {
+    const table = base("Approve");
+    const records = await table.select({ pageSize: 100 }).all();
+    const sets = records.map((record) => record.fields);
+    myCache.set("approved", sets);
+    return sets;
+  } catch (error) {}
+};
+
+myCache.on("expired", async (key) => {
+  const data = await loadAndSaveApprovedSheet();
+});
+
+const getApprovedSets = async () => {
+  const sets = myCache.get("approved");
+
+  if (!sets) {
+    return await loadAndSaveApprovedSheet();
+  }
+
+  return sets || [];
+};
 
 const sendToTable = (nft, status) => {
   base(status).create(
@@ -80,7 +113,6 @@ const excludeTraitsRule = (item) => {
     const trait = item.traits[i];
     const traitsToExclude = trait.Exclude.split(",");
     if (!isEmpty(traitsToExclude[0])) {
-      console.log({ trait: trait.Name, traitsToExclude });
       result = some(traitsToExclude, (traitRuleStr) => {
         const traitRule = parseTraitFromRule(traitRuleStr);
 
@@ -93,21 +125,39 @@ const excludeTraitsRule = (item) => {
 };
 
 const forceTraitsRule = (item) => {
-  let result = false;
-  for (const i in item.traits) {
-    const trait = item.traits[i];
+  const allForcedTraits = item.traits.reduce((acc, trait) => {
     const traitsToEnforce = trait.Force.split(",");
-
-    if (!isEmpty(traitsToEnforce[0])) {
-      result = some(traitsToEnforce, (traitRuleStr) => {
-        const traitRule = parseTraitFromRule(traitRuleStr);
-
-        return item[traitRule.Layer]?.Name === traitRule?.Name;
-      });
+    if (isEmpty(traitsToEnforce[0])) {
+      return acc;
     }
-  }
 
-  return result;
+    return [...acc, ...traitsToEnforce];
+  }, []);
+
+  if (isEmpty(allForcedTraits)) return true;
+
+  // check all traits against enforcement
+
+  const parsedForcedTraits = allForcedTraits.map(parseTraitFromRule);
+
+  return every(item.traits, (trait) => {
+    // trying to find a match
+    return parsedForcedTraits.find(
+      (forcedTrait) =>
+        forcedTrait.Name === trait.Name && forcedTrait.Layer === trait.Layer
+    );
+  });
+};
+
+const maxedOutTraitsRule = (sampleNFT) => {
+  return some(sampleNFT.traits, (trait) => maxedOutTraits.maxed[trait.Key]);
+};
+
+const rareFurRule = (item) => {
+  if (item.Fur.Rare === "Yes") {
+    return item.Body.Name !== "None" && item.Head.Name !== "None";
+  }
+  return false;
 };
 
 const excludeLayerRule = (item) => {
@@ -139,8 +189,6 @@ const MouthTraits = traits.filter((trait) => trait.Layer === "Mouth");
 const EyesTraits = traits.filter((trait) => trait.Layer === "Eyes");
 const HeadTraits = traits.filter((trait) => trait.Layer === "Head");
 const BodyTraits = traits.filter((trait) => trait.Layer === "Body");
-
-console.log(HeadTraits.length);
 
 const getRandomSet = async () => {
   const backgroundTrait = sample(
@@ -182,13 +230,60 @@ const getRandomSet = async () => {
     images,
   };
 
-  if (excludeTraitsRule(sampleNFT)) {
+  const approvedSets = await getApprovedSets();
+
+  // check against maxed out traits
+
+  // check agains already approved sets
+  if (
+    includes(approvedSets, (approvedSet) => {
+      return (
+        approvedSet.Background === sampleNFT.Background.Name &&
+        approvedSet.Fur === sampleNFT.Fur.Name &&
+        approvedSet.Mouth === sampleNFT.Mouth.Name &&
+        approvedSet.Eyes === sampleNFT.Eyes.Name &&
+        approvedSet.Head === sampleNFT.Head.Name &&
+        approvedSet.Body === sampleNFT.Body.Name
+      );
+    })
+  ) {
+    console.log("# found dublicate");
     return getRandomSet();
   }
 
-  /* if (!forceTraitsRule(sampleNFT)) {
+  if (excludeTraitsRule(sampleNFT)) {
+    console.log(
+      "# unmatched due exclude rule",
+      sampleNFT.traits.map((t) => t.Name)
+    );
     return getRandomSet();
-  } */
+  }
+
+  if (!forceTraitsRule(sampleNFT)) {
+    console.log(
+      "# unmatched due force rule",
+      sampleNFT.traits.map((t) => t.Name)
+    );
+    return getRandomSet();
+  }
+
+  if (rareFurRule(sampleNFT)) {
+    console.log("# ban rare fur", sampleNFT.Fur.Name);
+    return getRandomSet();
+  }
+
+  if (sampleNFT.Head.Name.includes("Halo")) {
+    console.log("# ban halo", sampleNFT.Head.Name);
+    return getRandomSet();
+  }
+
+  if (maxedOutTraitsRule(sampleNFT)) {
+    console.log(
+      "# maxed out trait",
+      sampleNFT.traits.map((t) => t.Name)
+    );
+    return getRandomSet();
+  }
 
   //   !run rules here
 
@@ -196,9 +291,6 @@ const getRandomSet = async () => {
 };
 
 const renderImage = async () => {
-  const canvas = createCanvas(2048, 2048);
-  const ctx = canvas.getContext("2d");
-
   // some items for the layers
   // Background
   // Fur
@@ -225,34 +317,43 @@ const renderImage = async () => {
 
   //console.log({ traits: sampleNFT.traits });
 
-  const buf2 = canvas.toBuffer("image/png", {
-    compressionLevel: 3,
-    filters: canvas.PNG_FILTER_NONE,
-  });
-
-  return { image: buf2, nftsSet };
+  return { nftsSet };
   //fs.writeFileSync("test2.png", buf2);
 };
+
+app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
 app.use("/layers", express.static("./layers"));
 
+app.use("/input", (req, res) => {
+  res.sendFile("./input.html", { root: __dirname });
+});
+
+app.use("/approved", async (req, res) => {
+  const records = await getApprovedSets();
+  res.json(records);
+});
+
 app.use("/", async (req, res) => {
-  const html = await buildHtml(req);
+  const approvedSets = await getApprovedSets();
+  const html = await buildHtml(req, approvedSets);
   res.set("Content-Type", "text/html");
   res.send(Buffer.from(html));
 });
 
 app.listen(process.env.PORT || 8080);
 
-const buildHtml = async (req) => {
+const buildHtml = async (req, approvedSets) => {
   var header = "";
   var body = "hello";
   try {
-    const { nftsSet, nft } = await renderImage();
+    const { nftsSet } = await renderImage();
     //console.log({ image, nft });
-    body = `<div class="container"> ${nftsSet.reduce((acc, item) => {
+    body = `<div>Approved: ${
+      approvedSets.length
+    }</div><div class="container"> ${nftsSet.reduce((acc, item) => {
       let imageString = "";
       for (const trait of item.traits) {
         imageString =
@@ -264,9 +365,9 @@ const buildHtml = async (req) => {
       return (
         acc +
         `<div>${imageString}<menu><button onclick="send('Approve', {${item.traits.map(
-          (t) => `${t.Layer}: '${t.Name}'`
+          (t) => `${t.Layer}: '${t.Name.replace("'", "#")}'`
         )}})">Approve</button><button onclick="send('Deny', {${item.traits.map(
-          (t) => `${t.Layer}: '${t.Name}'`
+          (t) => `${t.Layer}: '${t.Name.replace("'", "#")}'`
         )}})">Deny</button></menu><dl>${item.traits.map(
           (t) => `<dt>${t.Layer}</dt><dd>${t.Name}</dd>`
         )}</dl></div>`
@@ -275,14 +376,8 @@ const buildHtml = async (req) => {
     
     </div>
     <script>
-    var nft = ${JSON.stringify(
-      reduce(
-        nft,
-        (res, trait, key) => ({ ...res, [key.toString()]: trait.Name }),
-        {}
-      )
-    )}
     const send = (base, nft) => {
+      const nftToSend = Object.keys(nft).reduce((acc, key) => ({...acc, [key]: nft[key].replace("#", "'")}), {})
       const response = fetch('https://api.airtable.com/v0/appuQP7QzvQwbl6dP/' + base, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           mode: "cors", // no-cors, *cors, same-origin
@@ -293,7 +388,7 @@ const buildHtml = async (req) => {
           },
           body: JSON.stringify({
               records:[
-                  {fields: nft}
+                  {fields: nftToSend}
               ]
           }), 
         }).then(alert('success'));
