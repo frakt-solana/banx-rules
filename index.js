@@ -358,9 +358,9 @@ const buildHtml = async (req, approvedSets) => {
       for (const trait of item.traits) {
         imageString =
           imageString +
-          `<img src="${`layers/${
-            trait.Layer
-          }/${trait.Name.toLowerCase()}.png`}" />`;
+          `<img src="${encodeURI(
+            `layers/${trait.Layer}/${trait.Name.toLowerCase()}.png`
+          )}" />`;
       }
       return (
         acc +
