@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>generator input</title>
+    <style type="text/css">
+    body {
+      margin: 0;
+      padding: 1vw;
+    }
+    div.input-container {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+    div.container {
+      position: relative;
+      display: flex;
+      gap: 1vw 2vw;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      padding: 2vw;
+    }
+    div.container > div {
+      position: relative;
+      border-bottom: 1px solid #CCC;
+    }
+    div.container > div > img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      top: 0; 
+      left: 0;
+    }
+    dl {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: small;
+    }
+    dt, dd {
+      padding: 0;
+      margin: 0;
+    }
+    dt {
+      text-align: right;
+      width: 36%;
+    }
+    dd {
+      text-align: left;
+      font-weight: bold;
+      width: 60%;
+    }
+    menu {
+      display: flex;
+      padding: 0;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    button {
+      width: 36%;
+      padding: 0;
+      margin: 0;
+      color: white;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+    button:first-child {
+      background-color: green;
+    }
+    button:last-child {
+      background-color: red;
+    }
+
+    @media screen and (min-width: 1024px){
+        div.container > div {
+          width: 16vw;
+          padding-top: 16vw;
+        }
+    }
+    @media screen and (max-width: 1023px){
+        div.container > div {
+          width: 75vh;
+          padding-top: 75vh;
+        }
+    }
+  </style>
+  <link rel="stylesheet" href="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.css" />
+  <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+</head>
+<body>
+    <div class="input-container">
+    <label id="combinations-label">Combinations:</label>
+    <button onclick="loadAndSaveApprovedSheet()">Load</button>
+    </div>
+
+    <div class="container" id="generations-container"></div>
+
+    <div id="tui-pagination-container" class="tui-pagination"></div>
+
+    <form id="traits-form">
+        <label id="background-label">Background:</label>
+        <select name="Background" id="background">
+            <option value="any">Any</option>
+        </select>
+        <label id="background-label">Fur:</label>
+        <select name="Fur" id="fur">
+            <option value="any">Any</option>
+        </select>
+        <label id="background-label">Head:</label>
+        <select name="Head" id="head">
+            <option value="any">Any</option>
+        </select>
+        <label id="background-label">Mouth:</label>
+        <select name="Mouth" id="mouth">
+            <option value="any">Any</option>
+        </select>
+        <label id="background-label">Eyes:</label>
+        <select name="Eyes" id="eyes">
+            <option value="any">Any</option>
+        </select>
+        <label id="background-label">Body:</label>
+        <select name="Body" id="body">
+            <option value="any">Any</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Submit">
+      </form>
+
+    <div>
+        <label>Maxed out:</label>
+        <button onclick="setupMaxedOut()">Refresh</button>
+        <ol id="maxed-out-list">
+
+        </ol>  
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/airtable@0.12.1/lib/airtable.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.js" integrity="sha512-2iwCHjuj+PmdCyvb88rMOch0UcKQxVHi/gsAml1fN3eg82IDaO/cdzzeXX4iF2VzIIes7pODE1/G0ts3QBwslA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    Airtable.configure({
+  endpointUrl: "https://api.airtable.com",
+  apiKey:
+    "patAMXj3c4gedrbRE.5e3eefbdc79625812d0fd2290d103a67d6eb846f3810cdd64696b852a5224e70",
+});
+
+const LAYERS_NAMES = ['Background', 'Fur', 'Body', 'Mouth', 'Head', 'Eyes'];
+
+const base = Airtable.base("appuQP7QzvQwbl6dP");
+const Pagination = tui.Pagination;
+
+const paginationInstance = new Pagination(document.getElementById('tui-pagination-container'), {itemsPerPage: 10});
+
+document.getElementById('traits-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const results = e.target;
+    
+    const forcedTraits = Object.values(results.children).reduce((acc, layer) => {
+        if (layer.name && LAYERS_NAMES.includes(layer.name) && layer.value !== 'any') {
+           return {...acc, [layer.name]: layer.value}
+        }
+
+        return acc
+    }, {})
+
+    console.log({forcedTraits})
+
+    window.forcedTraits = Object.values(forcedTraits).length > 0 ? forcedTraits : null;
+    
+    if (window.forcedTraits) {
+        const newSets = window.sets.filter(set => {
+            const forcedLayers = Object.keys(forcedTraits);
+
+            for (const forcedLayer of forcedLayers) {
+                if (set[forcedLayer] !== forcedTraits[forcedLayer]) {
+                    return false
+                }
+            }
+
+            return true
+        })
+        console.log({newSets})
+       setupPages(newSets);
+       document.getElementById('combinations-label').innerHTML = "Combinations: " + newSets.length
+    } else {
+        setupPages(window.sets);
+        document.getElementById('combinations-label').innerHTML = "Combinations: " + window.sets.length
+    }
+})
+
+
+        
+
+const loadAndSaveTraits = async () => {
+    try {
+        const r = await fetch('/data/traits.json');
+        const data = await r.json();
+        window.traits = data;
+        const BackgroundTraits = data.filter((trait) => trait.Layer === "Background");
+        const FurTraits = data.filter((trait) => trait.Layer === "Fur");
+        const MouthTraits = data.filter((trait) => trait.Layer === "Mouth");
+        const EyesTraits = data.filter((trait) => trait.Layer === "Eyes");
+        const HeadTraits = data.filter((trait) => trait.Layer === "Head");
+        const BodyTraits = data.filter((trait) => trait.Layer === "Body");
+        window.mapedTraits = {Background: BackgroundTraits, Fur: FurTraits, Mouth:MouthTraits, Eyes:EyesTraits, Head:HeadTraits, Body:BodyTraits}
+        
+
+        BackgroundTraits.forEach(t => {
+            document.getElementById('background').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+
+        FurTraits.forEach(t => {
+            document.getElementById('fur').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+
+        HeadTraits.forEach(t => {
+            document.getElementById('head').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+
+        MouthTraits.forEach(t => {
+            document.getElementById('mouth').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+
+        BodyTraits.forEach(t => {
+            document.getElementById('body').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+
+        EyesTraits.forEach(t => {
+            document.getElementById('eyes').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+        
+        Object.keys(data.counts).forEach(key => {
+            if (data.maxed[key]) {
+                const current = data.counts[key].current;
+                const max = data.counts[key].max;
+                const diff = current - max;
+                list.innerHTML += `<li>${key}: ${current} / ${max} (${diff})</li>`   
+            }
+        })
+    } catch (error) {
+        
+    }
+}
+
+
+const getMaxedOutTraits = (approvedSets) => {
+
+  const approvedTraitsCount = approvedSets.reduce((acc, set) => {
+    const keyValues = Object.keys(set).map((key) => `${key}:${set[key]}`);
+
+    return keyValues.reduce((counts, key) => {
+      return { ...counts, [key]: counts[key] ? counts[key] + 1 : 1 };
+    }, acc);
+  }, {});
+
+  console.log("# approvedTraitsCount")
+
+  const maxed = Object.keys(approvedTraitsCount).reduce((acc, key) => {
+    const trait = traits.find((i) => i.Key === key);
+    return trait
+      ? { ...acc, [key]: approvedTraitsCount[key] >= trait.Count }
+      : acc;
+  }, {});
+
+  console.log("# maxed")
+
+  const counts = Object.keys(approvedTraitsCount).reduce((acc, key) => {
+    const trait = traits.find((i) => i.Key === key);
+    return trait
+      ? {
+          ...acc,
+          [key]: { current: approvedTraitsCount[key], max: trait.Count },
+        }
+      : acc;
+  }, {});
+
+  console.log("# counts")
+
+  return { maxed, counts };
+};
+
+const setupMaxedOut = async (sets) => {
+
+  const r = await fetch('/data/maxedOutTraits.json');
+  const {counts, maxed} = await r.json();
+  //const {counts, maxed} = getMaxedOutTraits(sets);
+
+       
+        const list = document.getElementById('maxed-out-list');
+        list.innerHTML = '';
+        const traits = _.sortBy(Object.keys(counts).reduce((acc, key) => {
+            if (maxed[key]) {
+                const current = counts[key].current;
+                const max = counts[key].max;
+                const diff = current - max;
+                return [...acc, {max, current, diff, key}]
+            }
+            return acc
+          }, []), 'diff').reverse();
+
+          traits.forEach(t => {
+            list.innerHTML += `<li>${t.key}: ${t.current} / ${t.max} (${t.diff})</li>`
+          })     
+}
+
+loadAndSaveTraits()
+
+const loadAndSaveApprovedSheet = async () => {
+const label = document.getElementById('combinations-label')
+label.innerHTML = "Loading..."
+
+  try {
+   //const table = base("Approve");
+   // const records = await table.select({ pageSize: 100 }).all();
+    //const sets = records.map((record) => ({...record.fields, id: record.id}));
+    const r = await fetch('/data/recordsSortedByTraitsRarity.json');
+    const records = await r.json();
+    const sets = records.reverse().map((record) => ({...record.fields, id: record.id, score: record.sum}));
+    
+    window.sets = sets;
+    window.records = records;
+    setupPages(sets);
+    setupMaxedOut(sets);
+    label.innerHTML = "Combinations: " + sets.length;
+    return sets;
+  } catch (error) {
+    label.innerHTML = "Error"
+    console.log(error)
+  }
+};
+
+
+const remove = async (id) => {
+base('Approve').destroy([id], function(err, deletedRecords) {
+  if (err) {
+    console.error(err);
+    alert('Error, check console')
+    return;
+  }
+  console.log('Deleted', deletedRecords.length, 'records');
+  alert('success')
+});
+}
+
+function paginate (arr, size) {
+  return arr.reduce((acc, val, i) => {
+    let idx = Math.floor(i / size)
+    let page = acc[idx] || (acc[idx] = [])
+    page.push(val)
+
+    return acc
+  }, [])
+}
+
+const setupPages = (sets) => {
+    const pages = paginate(sets, 10);
+    window.pages = pages;
+    paginationInstance.setTotalItems(sets.length);
+    paginationInstance.on('afterMove', (event) => {
+     const currentPage = event.page;
+     console.log(currentPage);
+     renderPage(currentPage)
+});
+    paginationInstance.reset()
+    paginationInstance.movePageTo(1);
+    renderPage(1);
+}
+
+const renderPage = (page) => {
+    const container = document.getElementById('generations-container');
+    container.innerHTML = ''
+    const pageSets = pages[page - 1];
+    const html = convertSetsToHTML(pageSets);
+    container.innerHTML = html;
+}
+
+const parseTrait = (str) => {
+        const arr = str.split('(http');
+        return arr[0].trim();
+}
+
+const convertSetsToHTML = (sets) => {
+        let htmlString = ''
+        try {
+            
+            for (const set of sets) {
+                const layers = Object.keys(set);
+                console.log({set, layers});
+                let imageString = ''
+                let traitsString = '';
+
+                for (const i in layers) {
+                    const layer = layers[i];
+                    const trait = set[layer];
+                    if (LAYERS_NAMES.includes(layer)) {
+                        const imageSrc = `/layers/${layer}/${trait?.toLowerCase()}.png`
+                        imageString += `<img src=${encodeURI(imageSrc)} />`
+                    }
+                    
+                    traitsString += `<dt>${layer}</dt><dd>${trait}</dd>`
+                }
+
+                const finalHtml = `<div>${imageString}<dl>${traitsString}</dl><button onclick="remove('${set.id}')">Remove</button></div>`;
+                htmlString += finalHtml;
+            }
+
+            return htmlString;
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+const refresh = async () => {
+    // make Ajax call here, inside the callback call:
+    await setupMaxedOut();
+
+    setTimeout(refresh, 120000);
+    // ...
+}
+
+// initial call, or just call refresh directly
+setTimeout(refresh, 120000)
+
+
+window.loadAndSaveApprovedSheet = loadAndSaveApprovedSheet;
+window.paginate = paginate;
+window.paginationInstance = paginationInstance;
+window.remove = remove;
+
+</script>

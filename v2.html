@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>generator input</title>
+    <style type="text/css">
+    body {
+      margin: 0;
+      padding: 1vw;
+    }
+    div.input-container {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+    div.container {
+      position: relative;
+      display: flex;
+      gap: 1vw 2vw;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      padding: 2vw;
+    }
+    div.container > div {
+      position: relative;
+      border-bottom: 1px solid #CCC;
+    }
+    div.container > div > img {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      top: 0; 
+      left: 0;
+    }
+    dl {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      font-size: small;
+    }
+    dt, dd {
+      padding: 0;
+      margin: 0;
+    }
+    dt {
+      text-align: right;
+      width: 36%;
+    }
+    dd {
+      text-align: left;
+      font-weight: bold;
+      width: 60%;
+    }
+    menu {
+      display: flex;
+      padding: 0;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    button {
+      width: 36%;
+      padding: 0;
+      margin: 0;
+      color: white;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+    button:first-child {
+      background-color: green;
+    }
+    button:last-child {
+      background-color: red;
+    }
+
+    @media screen and (min-width: 1024px){
+        div.container > div {
+          width: 16vw;
+          padding-top: 16vw;
+        }
+    }
+    @media screen and (max-width: 1023px){
+        div.container > div {
+          width: 75vh;
+          padding-top: 75vh;
+        }
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.js" integrity="sha512-2iwCHjuj+PmdCyvb88rMOch0UcKQxVHi/gsAml1fN3eg82IDaO/cdzzeXX4iF2VzIIes7pODE1/G0ts3QBwslA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="input-container">
+    <label id="status">Ready to generate</label>
+    <label id="count">Approved: </label>
+    <button onclick="onGenerate()">Generate Random</button>
+    </div>
+    <br><br>
+    <form id="traits-form">
+      <label id="background-label">Background:</label>
+      <select name="Background" id="background">
+          <option value="any">Any</option>
+      </select>
+      <label id="background-label">Fur:</label>
+      <select name="Fur" id="fur">
+          <option value="any">Any</option>
+      </select>
+      <label id="background-label">Head:</label>
+      <select name="Head" id="head">
+          <option value="any">Any</option>
+      </select>
+      <label id="background-label">Mouth:</label>
+      <select name="Mouth" id="mouth">
+          <option value="any">Any</option>
+      </select>
+      <label id="background-label">Eyes:</label>
+      <select name="Eyes" id="eyes">
+          <option value="any">Any</option>
+      </select>
+      <label id="background-label">Body:</label>
+      <select name="Body" id="body">
+          <option value="any">Any</option>
+      </select>
+      <br><br>
+      <input type="submit" value="Generate">
+    </form>
+    <div class="container" id="generations-container">
+
+    </div>
+
+</body>
+<script>
+  const LAYERS_NAMES = ['Background', 'Fur', 'Body', 'Mouth', 'Head', 'Eyes'];
+
+
+document.getElementById('traits-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const results = e.target;
+    
+    const forcedTraits = Object.values(results.children).reduce((acc, layer) => {
+        if (layer.name && LAYERS_NAMES.includes(layer.name) && layer.value !== 'any') {
+           return {...acc, [layer.name]: window.traits.find(t => t.Key === `${layer.name}:${layer.value}`)}
+        }
+
+        return acc
+    }, {})
+
+    console.log({forcedTraits})
+
+    window.forcedTraits = Object.values(forcedTraits).length > 0 ? forcedTraits : null;
+    
+    if (window.forcedTraits) {
+     const {nftsSet} =  generateSet(forcedTraits)
+     renderSet(nftsSet);
+
+    } else {
+       
+    }
+})
+
+const loadAndSaveTraits = async () => {
+    try {
+        document.getElementById("status").innerHTML = "Loading..."
+        await loadAndSaveMaxedOut();
+        const r = await fetch('/data/traits.json');
+        const data = await r.json();
+        window.traits = data;
+        document.getElementById("status").innerHTML = "Ready to generate";
+        const BackgroundTraits = data.filter((trait) => trait.Layer === "Background");
+        const FurTraits = data.filter((trait) => trait.Layer === "Fur");
+        const MouthTraits = data.filter((trait) => trait.Layer === "Mouth");
+        const EyesTraits = data.filter((trait) => trait.Layer === "Eyes");
+        const HeadTraits = data.filter((trait) => trait.Layer === "Head");
+        const BodyTraits = data.filter((trait) => trait.Layer === "Body");
+        BackgroundTraits.forEach(t => {
+            document.getElementById('background').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+
+        FurTraits.forEach(t => {
+            document.getElementById('fur').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+
+        HeadTraits.forEach(t => {
+            document.getElementById('head').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+
+        MouthTraits.forEach(t => {
+            document.getElementById('mouth').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+
+        BodyTraits.forEach(t => {
+            document.getElementById('body').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+
+        EyesTraits.forEach(t => {
+            document.getElementById('eyes').innerHTML += `<option value="${t.Name}">${t.Name}</option>`
+        })
+
+        window.mapedTraits = {Background: BackgroundTraits, Fur: FurTraits, Mouth:MouthTraits, Eyes:EyesTraits, Head:HeadTraits, Body:BodyTraits}
+    } catch (error) {
+        
+    }
+}
+
+const loadAndSaveMaxedOut = async () => {
+    try {
+        
+        const r = await fetch('/data/maxedOutTraits.json');
+        const data = await r.json();
+        window.maxedOutTraits = data;
+
+    } catch (error) {
+        
+    }
+}
+
+const loadAndSaveSets = async () => {
+    try {
+        
+        const r = await fetch('/data/approved.json');
+        const data = await r.json();
+        window.sets = data;
+        document.getElementById('count').innerHTML = "Approved: " + data.length;
+
+    } catch (error) {
+        
+    }
+}
+
+loadAndSaveTraits();
+loadAndSaveSets()
+
+
+
+
+const maxTraitSimilarityRule = (item, collection) => {
+  const allowedMatchingTraits = 2;
+  const match = find(collection, (i) => {
+    const matchingTraits = intersectionBy(i.traits, item.traits);
+
+    if (matchingTraits.length > allowedMatchingTraits) {
+      return false;
+    }
+
+    return true;
+  });
+
+  return match ? true : false;
+};
+
+const metadataOverridesRule = (item, collection) => {
+  const exceptionalTraits = [{ Layer: "1/1" }];
+
+  if (includes(item.traits)) {
+  }
+};
+
+const excludeTraitsRule = (item) => {
+  let result = false;
+  for (const i in item.traits) {
+    const trait = item.traits[i];
+    const traitsToExclude = trait.Exclude.split(",");
+    if (!_.isEmpty(traitsToExclude[0])) {
+      result = _.some(traitsToExclude, (traitRuleStr) => {
+        const traitRule = parseTraitFromRule(traitRuleStr);
+
+        return item[traitRule.Layer]?.Name === traitRule?.Name;
+      });
+    }
+  }
+
+  return result;
+};
+
+const forceTraitsRule = (item) => {
+  // return true if allow such sets
+  const allAllowedTraits = item.traits.reduce((acc, trait) => {
+    const traitsToEnforce = trait.Force.split(",");
+    if (_.isEmpty(traitsToEnforce[0])) {
+      return acc;
+    }
+
+    return [...acc, ...traitsToEnforce];
+  }, []);
+
+  
+
+  if (_.isEmpty(allAllowedTraits)) return true;
+
+  // check all traits against enforcement
+
+  const parsedAllowedTraits = allAllowedTraits.map(parseTraitFromRule);
+
+  console.log({allAllowedTraits, parsedAllowedTraits})
+
+  const intersection = _.intersectionWith(item.traits, parsedAllowedTraits, (a, b) => a.Name === b.Name && a.Layer === b.Layer)
+
+  return !_.isEmpty(intersection)
+};
+
+const getMaxedOutTraits = () => {
+ return window.maxedOutTraits;
+};
+
+const parseTraitFromRule = (traitFromRule) => {
+  const arr = traitFromRule.split(":");
+  return { Layer: arr[0], Name: arr[1] };
+};
+
+const maxedOutTraitsRule = (sampleNFT, approvedSets) => {
+  const maxedOutTraits = getMaxedOutTraits(approvedSets);
+  return _.some(sampleNFT.traits, (trait) => maxedOutTraits.maxed[trait.Key]);
+};
+
+const rareFurRule = (item) => {
+  if (item.Fur.Rare === "Yes") {
+    return item.Body.Name !== "None" && item.Head.Name !== "None";
+  }
+  return false;
+};
+
+const excludeLayerRule = (item) => {
+  const allNoneTraits = item.traits.reduce((acc, trait) => [
+    ...acc,
+    trait["Exclude"],
+  ]);
+
+  if (
+    _.some(
+      item.traits,
+      (trait) => allNoneTraits.includes(trait.name) && trait.value !== "None"
+    )
+  ) {
+    return false;
+  }
+
+  return false;
+};
+
+const generateSet = (props) => {
+  // some items for the layers
+  // Background
+  // Fur
+  // Mouth
+  // Eyes
+  // Head
+  // Body
+
+  // create a layer order 1
+
+  //const sampleNFT = getRandomSet();
+  const nftsSet = [
+    getRandomSet(props),
+    getRandomSet(props),
+    getRandomSet(props),
+    getRandomSet(props),
+    getRandomSet(props),
+    getRandomSet(props),
+    getRandomSet(props),
+    getRandomSet(props),
+    getRandomSet(props),
+    getRandomSet(props),
+  ];
+
+  //console.log({ traits: sampleNFT.traits });
+
+  window.currentSet = nftsSet;
+  return { nftsSet };
+  //fs.writeFileSync("test2.png", buf2);
+};
+
+
+    const parseTrait = (str) => {
+        const arr = str.split('(');
+        return arr[0].trim();
+    }
+
+    const generate = () => {
+        try {
+            document.getElementById('generations-container').innerHTML = ''
+            const textArea = document.getElementById("input")?.value
+            const config = JSON.parse(textArea);
+            console.log({config})
+            for (const set of config) {
+                const layers = Object.keys(set);
+                console.log({set, layers});
+                let imageString = ''
+                let traitsString = '';
+
+                for (const i in layers) {
+                    const layer = layers[i];
+                    const trait = parseTrait(set[layer]);
+                    if (['Background', 'Fur', 'Body', 'Mouth', 'Head', 'Eyes'].includes(layer)) {
+                        const imageSrc = `/layers/${layer}/${trait?.toLowerCase()}.png`
+                        imageString += `<img src=${encodeURI(imageSrc)} />`
+                    }
+                    
+                    traitsString += `<dt>${layer}</dt><dd>${trait}</dd>`
+                }
+
+                const finalHtml = `<div>${imageString}<dl>${traitsString}</dl></div>`;
+                document.getElementById('generations-container').innerHTML += finalHtml
+            }
+        } catch (error) {
+            alert(error)
+        }
+        
+    }
+
+const getRandomSet = (props) => {
+  const backgroundTrait = props?.Background || _.sample(
+    _.shuffle( window.mapedTraits.Background.filter((trait) => trait.Name !== "None"))
+  );
+  const furTrait = props?.Fur || _.sample(
+    _.shuffle(window.mapedTraits.Fur.filter((trait) => trait.Name !== "None"))
+  );
+  const mouthTrait = props?.Mouth || _.sample(
+    _.shuffle(window.mapedTraits.Mouth.filter((trait) => trait.Name !== "None"))
+  );
+  const eyesTrait = props?.Eyes || _.sample(
+    _.shuffle(window.mapedTraits.Eyes.filter((trait) => trait.Name !== "None"))
+  );
+  const headTrait = props?.Head || _.sample(_.shuffle(window.mapedTraits.Head));
+  //const bodyTrait = BodyTraits.find((t) => t.Name === "Hoodie up (black)");
+  const bodyTrait = props?.Body || _.sample(window.mapedTraits.Body);
+  const traits = _.orderBy(
+    [backgroundTrait, furTrait, mouthTrait, eyesTrait, headTrait, bodyTrait],
+    "Order"
+  );
+  console.log({traits});
+  const images = [];
+  for (const i in traits) {
+    const image = `layers/${traits[i].Layer}/${traits[i].Name.toLowerCase()}.png`
+
+    images.push(image);
+  }
+
+  const sampleNFT = {
+    Background: backgroundTrait,
+    Fur: furTrait,
+    Mouth: mouthTrait,
+    Eyes: eyesTrait,
+    Head: headTrait,
+    Body: bodyTrait,
+    traits,
+    images,
+  };
+
+  const approvedSets = window.sets;
+
+  // check against maxed out traits
+
+  // check agains already approved sets
+  if (
+    _.includes(approvedSets, (approvedSet) => {
+      return (
+        approvedSet.Background === sampleNFT.Background.Name &&
+        approvedSet.Fur === sampleNFT.Fur.Name &&
+        approvedSet.Mouth === sampleNFT.Mouth.Name &&
+        approvedSet.Eyes === sampleNFT.Eyes.Name &&
+        approvedSet.Head === sampleNFT.Head.Name &&
+        approvedSet.Body === sampleNFT.Body.Name
+      );
+    })
+  ) {
+    console.log("# found dublicate");
+    return getRandomSet(props);
+  }
+
+  if (excludeTraitsRule(sampleNFT)) {
+    console.log(
+      "# unmatched due exclude rule",
+      sampleNFT.traits.map((t) => t.Name)
+    );
+    return getRandomSet(props);
+  }
+
+  if (!forceTraitsRule(sampleNFT)) {
+    console.log(
+      "# unmatched due force rule",
+      sampleNFT.traits.map((t) => t.Name)
+    );
+    return getRandomSet(props);
+  }
+
+  if (rareFurRule(sampleNFT)) {
+    console.log("# ban rare fur", sampleNFT.Fur.Name);
+    return getRandomSet(props);
+  }
+
+  if (sampleNFT.Head.Name.includes("Halo")) {
+    console.log("# ban halo", sampleNFT.Head.Name);
+    return getRandomSet(props);
+  }
+
+  if (maxedOutTraitsRule(sampleNFT, approvedSets)) {
+    console.log(
+      "# maxed out trait",
+      sampleNFT.traits.map((t) => t.Name)
+    );
+    return getRandomSet(props);
+  }
+
+  //   !run rules here
+
+  return sampleNFT;
+};
+
+const send = (base, nft) => {
+      const nftToSend = Object.keys(nft).reduce((acc, key) => ({...acc, [key]: nft[key].replace("#", "'")}), {})
+      const response = fetch('https://api.airtable.com/v0/appuQP7QzvQwbl6dP/' + base, {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer patAMXj3c4gedrbRE.5e3eefbdc79625812d0fd2290d103a67d6eb846f3810cdd64696b852a5224e70"
+          },
+          body: JSON.stringify({
+              records:[
+                  {fields: nftToSend}
+              ]
+          }), 
+        }).then(alert('success'));
+        
+    }
+
+const onGenerate = () => {
+    const { nftsSet } = generateSet();
+    //console.log({ image, nft });
+    renderSet(nftsSet);
+}
+
+const renderSet = (nftsSet) => {
+  console.log({nftsSet})
+   const body =  `${nftsSet.reduce((acc, item) => {
+      let imageString = "";
+      for (const trait of item.traits) {
+        imageString =
+          imageString +
+          `<img src="${encodeURI(
+            `layers/${trait.Layer}/${trait.Name.toLowerCase()}.png`
+          )}" />`;
+      }
+      return (
+        acc +
+        `<div>${imageString}<menu><button onclick="send('Approve', {${item.traits.map(
+          (t) => `${t.Layer}: '${t.Name.replace("'", "#")}'`
+        )}})">Approve</button><button onclick="send('Deny', {${item.traits.map(
+          (t) => `${t.Layer}: '${t.Name.replace("'", "#")}'`
+        )}})">Deny</button></menu><dl>${item.traits.map(
+          (t) => `<dt>${t.Layer}</dt><dd>${t.Name}</dd>`
+        )}</dl></div>`
+      );
+    }, "")}`;
+
+    document.getElementById("generations-container").innerHTML = body
+}
+
+const refresh = async () => {
+    // make Ajax call here, inside the callback call:
+    await loadAndSaveMaxedOut();
+    await loadAndSaveSets()
+
+    setTimeout(refresh, 120000);
+    // ...
+}
+
+// initial call, or just call refresh directly
+setTimeout(refresh, 120000)
+</script>
+</html>
