@@ -383,28 +383,45 @@ const parseTrait = (str) => {
         return arr[0].trim();
 }
 
+const TIERS = _.sortBy(
+  [
+    { name: "1/1", chance: 0.1 },
+    { name: "Legendary", chance: 1, tr: 200 },
+    { name: "Epic", chance: 7, tr: 1600  },
+    { name: "Rare", chance: 11.4, tr: 3880  },
+    { name: "Uncommon", chance: 37.8, tr: 11440 },
+    { name: "Common", chance: 42.7, tr: 19974 },
+  ],
+  "chance"
+);
+
+
 const convertSetsToHTML = (sets) => {
         let htmlString = ''
         try {
             
             for (const set of sets) {
-                const layers = Object.keys(set);
-                console.log({set, layers});
+                const attributes = _.sortBy(Object.keys(set).map(layer => _.find(window.traits, t => t.Key === `${layer}:${set[layer]}`) || `${layer}:${set[layer]}`), 'Order');
+                const rank = window.records.findIndex(r => r.id === set.id) + 1;
+                const tier = TIERS.find(tier => tier.tr && tier.tr >= rank);
+                // TODO: sort by order
+                console.log({attributes});
                 let imageString = ''
                 let traitsString = '';
 
-                for (const i in layers) {
-                    const layer = layers[i];
-                    const trait = set[layer];
+                for (const i in attributes) {
+                    const attribute = attributes[i];
+                    const layer = attribute?.Layer || attribute.split(':')[0];
+                    const name = attribute?.Name || attribute.split(':')[1];
                     if (LAYERS_NAMES.includes(layer)) {
-                        const imageSrc = `/layers/${layer}/${trait?.toLowerCase()}.png`
+                        const imageSrc = `/layers/${layer}/${name?.toLowerCase()}.png`
                         imageString += `<img src=${encodeURI(imageSrc)} />`
                     }
                     
-                    traitsString += `<dt>${layer}</dt><dd>${trait}</dd>`
+                    traitsString += `<dt>${layer}</dt><dd>${name}</dd>`
                 }
 
-                const finalHtml = `<div>${imageString}<dl>${traitsString}</dl><button onclick="remove('${set.id}')">Remove</button></div>`;
+                const finalHtml = `<div>${imageString}<dl>${traitsString}<dt>Rank</dt><dd>${rank}</dd><dt>Tier</dt><dd>${tier.name}</dd></dl><button onclick="remove('${set.id}')">Remove</button></div>`;
                 htmlString += finalHtml;
             }
 

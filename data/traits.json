@@ -11,9 +11,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "80's Jacket",
+    "Name": "80's jacket",
     "Layer": "Body",
-    "Key": "Body:80's Jacket",
+    "Key": "Body:80's jacket",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -22,9 +22,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "ABC Monster Tee",
+    "Name": "ABC Monster tee",
     "Layer": "Body",
-    "Key": "Body:ABC Monster Tee",
+    "Key": "Body:ABC Monster tee",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -40,7 +40,7 @@
     "Order": 30,
     "Count": 222,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine",
     "Status": "Approved"
   },
   {
@@ -55,14 +55,14 @@
     "Status": "Approved"
   },
   {
-    "Name": "AR Visor",
+    "Name": "AR visor",
     "Layer": "Eyes",
-    "Key": "Eyes:AR Visor",
+    "Key": "Eyes:AR visor",
     "Source": "",
-    "Order": 61,
+    "Order": 50,
     "Count": 444,
     "Force": "",
-    "Exclude": "Head:Headset (Dark),Head:Headset (Light)",
+    "Exclude": "Head:Headphones (Dark),Head:Headphones (Light)",
     "Status": "Approved"
   },
   {
@@ -72,8 +72,8 @@
     "Source": "",
     "Order": 65,
     "Count": 222,
-    "Force": "Eyes:Angry,Eyes:Delighted,Eyes:Glowing,Eyes:Bored,Eyes:Laser,Eyes:Closed,Eyes:Normal,Eyes:Raised Brow,Eyes:Scheming,Eyes:Serious,Eyes:Trippy,Eyes:Wink,Eyes:Eye Patch,Eyes:AR Visor",
-    "Exclude": "Mouth:Yummy,Mouth:Tongue out,Mouth:Laugh,Mouth:Wheat straw,Mouth:Soda straw,Mouth:Bubble Gum,Mouth:Clover,Mouth:Cigar,Mouth:Joint,Mouth:Porn stache,Mouth:Kiss,Body:Varsity Jacket (navy),Body:Tracksuit (navy),Head:Baseball hat (navy),Head:Bucket Hat (navy),Head:Back Baseball hat (navy),Fur:Navy,Head:Beanie (navy),Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Sailor Jacket,Body:Weed sweater,Body:Neo's Gabardine",
+    "Force": "Eyes:Angry,Eyes:Delighted,Eyes:Glowing,Eyes:Bored,Eyes:Laser,Eyes:Closed,Eyes:Normal,Eyes:Raised brow,Eyes:Scheming,Eyes:Serious,Eyes:Trippy,Eyes:Wink,Eyes:Eye patch,Eyes:AR visor",
+    "Exclude": "Mouth:Yummy,Mouth:Tongue out,Mouth:Laugh,Mouth:Wheat straw,Mouth:Soda straw,Mouth:Bubble gum,Mouth:Clover,Mouth:Cigar,Mouth:Joint,Mouth:Porn stache,Mouth:Kiss,Body:Varsity jacket (Navy),Body:Tracksuit (Navy),Head:Baseball hat (Navy),Head:Bucket hat (Navy),Head:Back baseball hat (Navy),Fur:Navy,Head:Beanie (Navy),Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Sailor jacket,Body:Weed sweater,Body:Neo's gabardine",
     "Status": "Approved"
   },
   {
@@ -88,9 +88,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Aviator Jacket",
+    "Name": "Aviator jacket",
     "Layer": "Body",
-    "Key": "Body:Aviator Jacket",
+    "Key": "Body:Aviator jacket",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -99,20 +99,20 @@
     "Status": "Approved"
   },
   {
-    "Name": "Back Baseball hat (black)",
+    "Name": "Back baseball hat (Black)",
     "Layer": "Head",
-    "Key": "Head:Back Baseball hat (black)",
+    "Key": "Head:Back baseball hat (Black)",
     "Source": "",
     "Order": 60,
     "Count": 333,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
-    "Name": "Back Baseball hat (green)",
+    "Name": "Back baseball hat (Green)",
     "Layer": "Head",
-    "Key": "Head:Back Baseball hat (green)",
+    "Key": "Head:Back baseball hat (Green)",
     "Source": "",
     "Order": 60,
     "Count": 188,
@@ -121,20 +121,20 @@
     "Status": "Approved"
   },
   {
-    "Name": "Back Baseball hat (navy)",
+    "Name": "Back baseball hat (Navy)",
     "Layer": "Head",
-    "Key": "Head:Back Baseball hat (navy)",
+    "Key": "Head:Back baseball hat (Navy)",
     "Source": "",
     "Order": 60,
     "Count": 188,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine,Body:Naruto Robe",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine,Body:Naruto robe",
     "Status": "Approved"
   },
   {
-    "Name": "Back Baseball hat (red)",
+    "Name": "Back baseball hat (Red)",
     "Layer": "Head",
-    "Key": "Head:Back Baseball hat (red)",
+    "Key": "Head:Back baseball hat (Red)",
     "Source": "",
     "Order": 60,
     "Count": 188,
@@ -143,9 +143,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Back Baseball hat (yellow)",
+    "Name": "Back baseball hat (Yellow)",
     "Layer": "Head",
-    "Key": "Head:Back Baseball hat (yellow)",
+    "Key": "Head:Back baseball hat (Yellow)",
     "Source": "",
     "Order": 60,
     "Count": 188,
@@ -198,14 +198,14 @@
     "Status": "Approved"
   },
   {
-    "Name": "Baseball hat (navy)",
+    "Name": "Baseball hat (Navy)",
     "Layer": "Head",
-    "Key": "Head:Baseball hat (navy)",
+    "Key": "Head:Baseball hat (Navy)",
     "Source": "",
     "Order": 60,
     "Count": 188,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine,Body:Naruto Robe",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine,Body:Naruto robe",
     "Status": "Approved"
   },
   {
@@ -264,20 +264,20 @@
     "Status": "Approved"
   },
   {
-    "Name": "Beanie (black)",
+    "Name": "Beanie (Black)",
     "Layer": "Head",
-    "Key": "Head:Beanie (black)",
+    "Key": "Head:Beanie (Black)",
     "Source": "",
     "Order": 60,
     "Count": 188,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
-    "Name": "Beanie (green)",
+    "Name": "Beanie (Green)",
     "Layer": "Head",
-    "Key": "Head:Beanie (green)",
+    "Key": "Head:Beanie (Green)",
     "Source": "",
     "Order": 60,
     "Count": 188,
@@ -286,20 +286,20 @@
     "Status": "Approved"
   },
   {
-    "Name": "Beanie (navy)",
+    "Name": "Beanie (Navy)",
     "Layer": "Head",
-    "Key": "Head:Beanie (navy)",
+    "Key": "Head:Beanie (Navy)",
     "Source": "",
     "Order": 60,
     "Count": 188,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine,Body:Naruto Robe",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine,Body:Naruto robe",
     "Status": "Approved"
   },
   {
-    "Name": "Beanie (orange)",
+    "Name": "Beanie (Orange)",
     "Layer": "Head",
-    "Key": "Head:Beanie (orange)",
+    "Key": "Head:Beanie (Orange)",
     "Source": "",
     "Order": 60,
     "Count": 188,
@@ -315,13 +315,13 @@
     "Order": 60,
     "Count": 333,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine,Body:Naruto Robe",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine,Body:Naruto robe",
     "Status": "Approved"
   },
   {
-    "Name": "Biker's Jacket",
+    "Name": "Biker's jacket",
     "Layer": "Body",
-    "Key": "Body:Biker's Jacket",
+    "Key": "Body:Biker's jacket",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -385,69 +385,69 @@
     "Status": "Approved"
   },
   {
-    "Name": "Bubble Gum",
+    "Name": "Bubble gum",
     "Layer": "Mouth",
-    "Key": "Mouth:Bubble Gum",
+    "Key": "Mouth:Bubble gum",
     "Source": "",
     "Order": 65,
     "Count": 969,
     "Force": "",
-    "Exclude": "Body:Assassin,Eyes:VR Headset,Eyes:Laser",
+    "Exclude": "Body:Assassin,Eyes:VR headset,Eyes:Laser",
     "Status": "Approved"
   },
   {
-    "Name": "Bucket Hat (black)",
+    "Name": "Bucket hat (Black)",
     "Layer": "Head",
-    "Key": "Head:Bucket Hat (black)",
+    "Key": "Head:Bucket hat (Black)",
     "Source": "",
     "Order": 60,
     "Count": 188,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket,Eyes:Steampunk,Body:Space Warrior",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket,Eyes:Steampunk,Body:Space warrior",
     "Status": "Approved"
   },
   {
-    "Name": "Bucket Hat (navy)",
+    "Name": "Bucket hat (Navy)",
     "Layer": "Head",
-    "Key": "Head:Bucket Hat (navy)",
+    "Key": "Head:Bucket hat (Navy)",
     "Source": "",
     "Order": 60,
     "Count": 188,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine,Body:Naruto Robe,Eyes:Steampunk",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine,Body:Naruto robe,Eyes:Steampunk",
     "Status": "Approved"
   },
   {
-    "Name": "Bucket Hat (red)",
+    "Name": "Bucket hat (Red)",
     "Layer": "Head",
-    "Key": "Head:Bucket Hat (red)",
+    "Key": "Head:Bucket hat (Red)",
     "Source": "",
     "Order": 60,
     "Count": 188,
     "Force": "",
-    "Exclude": "Eyes:Steampunk,Body:Space Warrior",
+    "Exclude": "Eyes:Steampunk,Body:Space warrior",
     "Status": "Approved"
   },
   {
-    "Name": "Bucket Hat (teal)",
+    "Name": "Bucket hat (Teal)",
     "Layer": "Head",
-    "Key": "Head:Bucket Hat (teal)",
+    "Key": "Head:Bucket hat (Teal)",
     "Source": "",
     "Order": 60,
     "Count": 188,
     "Force": "",
-    "Exclude": "Fur:Green,Eyes:Laser,Eyes:Steampunk,Body:Space Warrior",
+    "Exclude": "Fur:Green,Eyes:Laser,Eyes:Steampunk,Body:Space warrior",
     "Status": "Approved"
   },
   {
-    "Name": "Bucket Hat (yellow)",
+    "Name": "Bucket hat (Yellow)",
     "Layer": "Head",
-    "Key": "Head:Bucket Hat (yellow)",
+    "Key": "Head:Bucket hat (Yellow)",
     "Source": "",
     "Order": 60,
     "Count": 188,
     "Force": "",
-    "Exclude": "Eyes:Steampunk,Body:Space Warrior",
+    "Exclude": "Eyes:Steampunk,Body:Space warrior",
     "Status": "Approved"
   },
   {
@@ -506,9 +506,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Cobies (red)",
+    "Name": "Cobies (Red)",
     "Layer": "Eyes",
-    "Key": "Eyes:Cobies (red)",
+    "Key": "Eyes:Cobies (Red)",
     "Source": "",
     "Order": 50,
     "Count": 333,
@@ -517,9 +517,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Cobies (white)",
+    "Name": "Cobies (White)",
     "Layer": "Eyes",
-    "Key": "Eyes:Cobies (white)",
+    "Key": "Eyes:Cobies (White)",
     "Source": "",
     "Order": 50,
     "Count": 333,
@@ -539,9 +539,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Collared shirt (red)",
+    "Name": "Collared shirt (Red)",
     "Layer": "Body",
-    "Key": "Body:Collared shirt (red)",
+    "Key": "Body:Collared shirt (Red)",
     "Source": "",
     "Order": 30,
     "Count": 188,
@@ -594,9 +594,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Cyborg Brain",
+    "Name": "Cyborg brain",
     "Layer": "Head",
-    "Key": "Head:Cyborg Brain",
+    "Key": "Head:Cyborg brain",
     "Source": "",
     "Order": 60,
     "Count": 333,
@@ -612,7 +612,7 @@
     "Order": 60,
     "Count": 333,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine,Body:Naruto Robe",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine,Body:Naruto robe",
     "Status": "Approved"
   },
   {
@@ -638,9 +638,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Dapper Suit",
+    "Name": "Dapper suit",
     "Layer": "Body",
-    "Key": "Body:Dapper Suit",
+    "Key": "Body:Dapper suit",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -660,9 +660,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Denim Jacket",
+    "Name": "Denim jacket",
     "Layer": "Body",
-    "Key": "Body:Denim Jacket",
+    "Key": "Body:Denim jacket",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -671,9 +671,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Diamond Grills",
+    "Name": "Diamond grills",
     "Layer": "Mouth",
-    "Key": "Mouth:Diamond Grills",
+    "Key": "Mouth:Diamond grills",
     "Source": "",
     "Order": 40,
     "Count": 969,
@@ -688,7 +688,7 @@
     "Source": "",
     "Order": 64,
     "Count": 136,
-    "Force": "Head:None,Head:Cyborg Brain,Head:Piercing,Head:Earring",
+    "Force": "Head:None,Head:Cyborg brain,Head:Piercing,Head:Earring",
     "Exclude": "",
     "Status": "Approved"
   },
@@ -700,7 +700,7 @@
     "Order": 60,
     "Count": 222,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
@@ -726,9 +726,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Emperor Robe",
+    "Name": "Emperor robe",
     "Layer": "Body",
-    "Key": "Body:Emperor Robe",
+    "Key": "Body:Emperor robe",
     "Source": "",
     "Order": 30,
     "Count": 188,
@@ -748,9 +748,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Eye Patch",
+    "Name": "Eye patch",
     "Layer": "Eyes",
-    "Key": "Eyes:Eye Patch",
+    "Key": "Eyes:Eye patch",
     "Source": "",
     "Order": 50,
     "Count": 444,
@@ -770,9 +770,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Fedora Hat",
+    "Name": "Fedora hat",
     "Layer": "Head",
-    "Key": "Head:Fedora Hat",
+    "Key": "Head:Fedora hat",
     "Source": "",
     "Order": 60,
     "Count": 333,
@@ -799,7 +799,7 @@
     "Order": 60,
     "Count": 333,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine,Body:Naruto Robe",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine,Body:Naruto robe",
     "Status": "Approved"
   },
   {
@@ -814,9 +814,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Flat Cap",
+    "Name": "Flat cap",
     "Layer": "Head",
-    "Key": "Head:Flat Cap",
+    "Key": "Head:Flat cap",
     "Source": "",
     "Order": 60,
     "Count": 333,
@@ -897,7 +897,7 @@
     "Source": "",
     "Order": 60,
     "Count": 333,
-    "Force": "Eyes:Angry,Eyes:Delighted,Eyes:Glowing,Eyes:Bored,Eyes:Laser,Eyes:Closed,Eyes:Normal,Eyes:Raised Brow,Eyes:Scheming,Eyes:Serious,Eyes:Trippy,Eyes:Wink",
+    "Force": "Eyes:Angry,Eyes:Delighted,Eyes:Glowing,Eyes:Bored,Eyes:Laser,Eyes:Closed,Eyes:Normal,Eyes:Raised brow,Eyes:Scheming,Eyes:Serious,Eyes:Trippy,Eyes:Wink",
     "Exclude": "",
     "Status": "Approved"
   },
@@ -942,7 +942,7 @@
     "Order": 20,
     "Count": 1777,
     "Force": "",
-    "Exclude": "Head:Bucket Hat (teal),Body:Tracksuit (teal)",
+    "Exclude": "Head:Bucket hat (Teal),Body:Tracksuit (Teal)",
     "Status": "Approved"
   },
   {
@@ -990,9 +990,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Halo (gold)",
+    "Name": "Halo (Gold)",
     "Layer": "Head",
-    "Key": "Head:Halo (gold)",
+    "Key": "Head:Halo (Gold)",
     "Source": "",
     "Order": 60,
     "Count": 55,
@@ -1056,9 +1056,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Hawaii shirt (green)",
+    "Name": "Hawaii shirt (Green)",
     "Layer": "Body",
-    "Key": "Body:Hawaii shirt (green)",
+    "Key": "Body:Hawaii shirt (Green)",
     "Source": "",
     "Order": 30,
     "Count": 188,
@@ -1100,31 +1100,31 @@
     "Status": "Approved"
   },
   {
-    "Name": "Headset (Dark)",
+    "Name": "Headphones (Dark)",
     "Layer": "Head",
-    "Key": "Head:Headset (Dark)",
+    "Key": "Head:Headphones (Dark)",
     "Source": "",
     "Order": 45,
     "Count": 222,
     "Force": "",
-    "Exclude": "Eyes:AR Visor,Eyes:Steampunk",
+    "Exclude": "Eyes:AR visor,Eyes:Steampunk",
     "Status": "Approved"
   },
   {
-    "Name": "Headset (Light)",
+    "Name": "Headphones (Light)",
     "Layer": "Head",
-    "Key": "Head:Headset (Light)",
+    "Key": "Head:Headphones (Light)",
     "Source": "",
     "Order": 45,
     "Count": 222,
     "Force": "",
-    "Exclude": "Eyes:AR Visor,Eyes:Steampunk",
+    "Exclude": "Eyes:AR visor,Eyes:Steampunk",
     "Status": "Approved"
   },
   {
-    "Name": "Heart Glasses",
+    "Name": "Heart glasses",
     "Layer": "Eyes",
-    "Key": "Eyes:Heart Glasses",
+    "Key": "Eyes:Heart glasses",
     "Source": "",
     "Order": 50,
     "Count": 444,
@@ -1139,25 +1139,25 @@
     "Source": "",
     "Order": 60,
     "Count": 222,
-    "Force": "Eyes:Angry,Eyes:Delighted,Eyes:Glowing,Eyes:Bored,Eyes:Laser,Eyes:Closed,Eyes:Normal,Eyes:Raised Brow,Eyes:Scheming,Eyes:Serious,Eyes:Trippy,Eyes:Wink",
+    "Force": "Eyes:Angry,Eyes:Delighted,Eyes:Glowing,Eyes:Bored,Eyes:Laser,Eyes:Closed,Eyes:Normal,Eyes:Raised brow,Eyes:Scheming,Eyes:Serious,Eyes:Trippy,Eyes:Wink",
     "Exclude": "",
     "Status": "Approved"
   },
   {
-    "Name": "Hoodie down (black)",
+    "Name": "Hoodie down (Black)",
     "Layer": "Body",
-    "Key": "Body:Hoodie down (black)",
+    "Key": "Body:Hoodie down (Black)",
     "Source": "",
     "Order": 30,
     "Count": 144,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
-    "Name": "Hoodie down (red)",
+    "Name": "Hoodie down (Red)",
     "Layer": "Body",
-    "Key": "Body:Hoodie down (red)",
+    "Key": "Body:Hoodie down (Red)",
     "Source": "",
     "Order": 30,
     "Count": 144,
@@ -1177,24 +1177,24 @@
     "Status": "Approved"
   },
   {
-    "Name": "Hoodie up (black)",
+    "Name": "Hoodie up (Black)",
     "Layer": "Body",
-    "Key": "Body:Hoodie up (black)",
+    "Key": "Body:Hoodie up (Black)",
     "Source": "",
     "Order": 64,
     "Count": 144,
-    "Force": "Head:None,Head:Cyborg Brain,Head:Piercing,Head:Earring",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Force": "Head:None,Head:Cyborg brain,Head:Piercing,Head:Earring",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
-    "Name": "Hoodie up (red)",
+    "Name": "Hoodie up (Red)",
     "Layer": "Body",
-    "Key": "Body:Hoodie up (red)",
+    "Key": "Body:Hoodie up (Red)",
     "Source": "",
     "Order": 64,
     "Count": 144,
-    "Force": "Head:None,Head:Cyborg Brain,Head:Piercing,Head:Earring",
+    "Force": "Head:None,Head:Cyborg brain,Head:Piercing,Head:Earring",
     "Exclude": "",
     "Status": "Approved"
   },
@@ -1205,14 +1205,14 @@
     "Source": "",
     "Order": 64,
     "Count": 144,
-    "Force": "Head:None,Head:Cyborg Brain,Head:Piercing,Head:Earring",
+    "Force": "Head:None,Head:Cyborg brain,Head:Piercing,Head:Earring",
     "Exclude": "",
     "Status": "Approved"
   },
   {
-    "Name": "Horn rimmed (bored)",
+    "Name": "Horn rimmed (Bored)",
     "Layer": "Eyes",
-    "Key": "Eyes:Horn rimmed (bored)",
+    "Key": "Eyes:Horn rimmed (Bored)",
     "Source": "",
     "Order": 50,
     "Count": 333,
@@ -1221,9 +1221,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Horn rimmed (serious)",
+    "Name": "Horn rimmed (Serious)",
     "Layer": "Eyes",
-    "Key": "Eyes:Horn rimmed (serious)",
+    "Key": "Eyes:Horn rimmed (Serious)",
     "Source": "",
     "Order": 50,
     "Count": 333,
@@ -1254,9 +1254,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "IT Nerd",
+    "Name": "IT nerd",
     "Layer": "Body",
-    "Key": "Body:IT Nerd",
+    "Key": "Body:IT nerd",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -1294,13 +1294,13 @@
     "Order": 65,
     "Count": 969,
     "Force": "",
-    "Exclude": "Eyes:Serious,Body:Assassin,Eyes:Laser,Eyes:Horn rimmed (serious),Eyes:Reading Glasses (serious),Eyes:Scheming",
+    "Exclude": "Eyes:Serious,Body:Assassin,Eyes:Laser,Eyes:Horn rimmed (Serious),Eyes:Reading glasses (Serious),Eyes:Scheming",
     "Status": "Approved"
   },
   {
-    "Name": "Lab Coat",
+    "Name": "Lab coat",
     "Layer": "Body",
-    "Key": "Body:Lab Coat",
+    "Key": "Body:Lab coat",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -1316,7 +1316,7 @@
     "Order": 50,
     "Count": 444,
     "Force": "",
-    "Exclude": "Mouth:Cigar,Mouth:Clover,Mouth:Wheat straw,Mouth:Kiss,Head:Bucket Hat (teal),Body:Tracksuit (teal),Mouth:Bubble Gum,Mouth:Joint",
+    "Exclude": "Mouth:Cigar,Mouth:Clover,Mouth:Wheat straw,Mouth:Kiss,Head:Bucket hat (Teal),Body:Tracksuit (Teal),Mouth:Bubble gum,Mouth:Joint",
     "Status": "Approved"
   },
   {
@@ -1327,7 +1327,7 @@
     "Order": 40,
     "Count": 969,
     "Force": "",
-    "Exclude": "Body:Assassin,Eyes:Serious,Eyes:Horn rimmed (serious),Eyes:Reading Glasses (serious)",
+    "Exclude": "Body:Assassin,Eyes:Serious,Eyes:Horn rimmed (Serious),Eyes:Reading glasses (Serious)",
     "Status": "Approved"
   },
   {
@@ -1342,9 +1342,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "McDonalds Cap",
+    "Name": "McDonalds cap",
     "Layer": "Head",
-    "Key": "Head:McDonalds Cap",
+    "Key": "Head:McDonalds cap",
     "Source": "",
     "Order": 60,
     "Count": 333,
@@ -1397,25 +1397,25 @@
     "Status": "Approved"
   },
   {
-    "Name": "Naruto Headband",
+    "Name": "Naruto headband",
     "Layer": "Head",
-    "Key": "Head:Naruto Headband",
+    "Key": "Head:Naruto headband",
     "Source": "",
     "Order": 60,
     "Count": 333,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine",
     "Status": "Approved"
   },
   {
-    "Name": "Naruto Robe",
+    "Name": "Naruto robe",
     "Layer": "Body",
-    "Key": "Body:Naruto Robe",
+    "Key": "Body:Naruto robe",
     "Source": "",
     "Order": 30,
     "Count": 222,
     "Force": "",
-    "Exclude": "Fur:Navy,Head:Back Baseball hat (navy),Head:Baseball hat (navy),Head:Beanie (navy),Head:Beret,Head:Bucket Hat (navy),Head:Dad hat,Head:Fiddler hat",
+    "Exclude": "Fur:Navy,Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Head:Beanie (Navy),Head:Beret,Head:Bucket hat (Navy),Head:Dad hat,Head:Fiddler hat",
     "Status": "Approved"
   },
   {
@@ -1426,7 +1426,7 @@
     "Order": 20,
     "Count": 1777,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine,Body:Naruto Robe,Body:Cyberpunk",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine,Body:Naruto robe,Body:Cyberpunk",
     "Status": "Approved"
   },
   {
@@ -1452,14 +1452,14 @@
     "Status": "Approved"
   },
   {
-    "Name": "Neo's Gabardine",
+    "Name": "Neo's gabardine",
     "Layer": "Body",
-    "Key": "Body:Neo's Gabardine",
+    "Key": "Body:Neo's gabardine",
     "Source": "",
     "Order": 30,
     "Count": 222,
     "Force": "",
-    "Exclude": "Fur:Navy,Head:Back Baseball hat (navy),Head:Baseball hat (navy),Head:Beanie (navy),Head:Beret,Head:Bucket Hat (navy),Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Sailor Jacket,Body:Tracksuit (navy),Body:Varsity Jacket (navy),Body:Weed sweater,Body:Assassin,Head:Wizard Hat",
+    "Exclude": "Fur:Navy,Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Head:Beanie (Navy),Head:Beret,Head:Bucket hat (Navy),Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Sailor jacket,Body:Tracksuit (Navy),Body:Varsity jacket (Navy),Body:Weed sweater,Body:Assassin,Head:Wizard hat",
     "Status": "Approved"
   },
   {
@@ -1602,7 +1602,7 @@
     "Order": 50,
     "Count": 444,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine",
     "Status": "Approved"
   },
   {
@@ -1656,14 +1656,14 @@
     "Source": "",
     "Order": 60,
     "Count": 333,
-    "Force": "Eyes:Angry,Eyes:Delighted,Eyes:Glowing,Eyes:Bored,Eyes:Laser,Eyes:Closed,Eyes:Normal,Eyes:Raised Brow,Eyes:Scheming,Eyes:Serious,Eyes:Trippy,Eyes:Wink",
+    "Force": "Eyes:Angry,Eyes:Delighted,Eyes:Glowing,Eyes:Bored,Eyes:Laser,Eyes:Closed,Eyes:Normal,Eyes:Raised brow,Eyes:Scheming,Eyes:Serious,Eyes:Trippy,Eyes:Wink",
     "Exclude": "",
     "Status": "Approved"
   },
   {
-    "Name": "Pilot Sunglasses",
+    "Name": "Pilot sunglasses",
     "Layer": "Eyes",
-    "Key": "Eyes:Pilot Sunglasses",
+    "Key": "Eyes:Pilot sunglasses",
     "Source": "",
     "Order": 50,
     "Count": 444,
@@ -1672,9 +1672,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Pimp Jacket",
+    "Name": "Pimp jacket",
     "Layer": "Body",
-    "Key": "Body:Pimp Jacket",
+    "Key": "Body:Pimp jacket",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -1716,9 +1716,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Pirate Captain",
+    "Name": "Pirate captain",
     "Layer": "Body",
-    "Key": "Body:Pirate Captain",
+    "Key": "Body:Pirate captain",
     "Source": "",
     "Order": 64,
     "Count": 222,
@@ -1727,9 +1727,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Pirate Hat",
+    "Name": "Pirate hat",
     "Layer": "Head",
-    "Key": "Head:Pirate Hat",
+    "Key": "Head:Pirate hat",
     "Source": "",
     "Order": 60,
     "Count": 333,
@@ -1738,9 +1738,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Pirate Sailor",
+    "Name": "Pirate sailor",
     "Layer": "Body",
-    "Key": "Body:Pirate Sailor",
+    "Key": "Body:Pirate sailor",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -1756,7 +1756,7 @@
     "Order": 50,
     "Count": 444,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
@@ -1782,20 +1782,20 @@
     "Status": "Approved"
   },
   {
-    "Name": "Polo (black)",
+    "Name": "Polo (Black)",
     "Layer": "Body",
-    "Key": "Body:Polo (black)",
+    "Key": "Body:Polo (Black)",
     "Source": "",
     "Order": 30,
     "Count": 150,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
-    "Name": "Polo (Blue)",
+    "Name": "Polo (Purple)",
     "Layer": "Body",
-    "Key": "Body:Polo (Blue)",
+    "Key": "Body:Polo (Purple)",
     "Source": "",
     "Order": 30,
     "Count": 150,
@@ -1804,9 +1804,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Polo (white)",
+    "Name": "Polo (White)",
     "Layer": "Body",
-    "Key": "Body:Polo (white)",
+    "Key": "Body:Polo (White)",
     "Source": "",
     "Order": 30,
     "Count": 150,
@@ -1826,14 +1826,14 @@
     "Status": "Approved"
   },
   {
-    "Name": "Pork Pie hat",
+    "Name": "Pork pie hat",
     "Layer": "Head",
-    "Key": "Head:Pork Pie hat",
+    "Key": "Head:Pork pie hat",
     "Source": "",
     "Order": 60,
     "Count": 333,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
@@ -1859,9 +1859,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Prison Uniform",
+    "Name": "Prison uniform",
     "Layer": "Body",
-    "Key": "Body:Prison Uniform",
+    "Key": "Body:Prison uniform",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -1881,14 +1881,14 @@
     "Status": "Approved"
   },
   {
-    "Name": "Puff jacket (black)",
+    "Name": "Puff jacket (Black)",
     "Layer": "Body",
-    "Key": "Body:Puff jacket (black)",
+    "Key": "Body:Puff jacket (Black)",
     "Source": "",
     "Order": 30,
     "Count": 188,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
@@ -1903,9 +1903,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Puff Jacket (white)",
+    "Name": "Puff jacket (White)",
     "Layer": "Body",
-    "Key": "Body:Puff Jacket (white)",
+    "Key": "Body:Puff jacket (White)",
     "Source": "",
     "Order": 30,
     "Count": 188,
@@ -1914,31 +1914,20 @@
     "Status": "Approved"
   },
   {
-    "Name": "Punk hair (black)",
+    "Name": "Punk hair (Black)",
     "Layer": "Head",
-    "Key": "Head:Punk hair (black)",
+    "Key": "Head:Punk hair (Black)",
     "Source": "",
     "Order": 60,
     "Count": 222,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
-    "Name": "Punk hair (green)",
+    "Name": "Punk hair (Green)",
     "Layer": "Head",
-    "Key": "Head:Punk hair (green)",
-    "Source": "",
-    "Order": 60,
-    "Count": 222,
-    "Force": "",
-    "Exclude": "",
-    "Status": "Approved"
-  },
-  {
-    "Name": "Punk hair (purple)",
-    "Layer": "Head",
-    "Key": "Head:Punk hair (purple)",
+    "Key": "Head:Punk hair (Green)",
     "Source": "",
     "Order": 60,
     "Count": 222,
@@ -1947,31 +1936,42 @@
     "Status": "Approved"
   },
   {
-    "Name": "Punk Jacket",
+    "Name": "Punk hair (Purple)",
+    "Layer": "Head",
+    "Key": "Head:Punk hair (Purple)",
+    "Source": "",
+    "Order": 60,
+    "Count": 222,
+    "Force": "",
+    "Exclude": "",
+    "Status": "Approved"
+  },
+  {
+    "Name": "Punk jacket",
     "Layer": "Body",
-    "Key": "Body:Punk Jacket",
+    "Key": "Body:Punk jacket",
     "Source": "",
     "Order": 30,
     "Count": 222,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
-    "Name": "Punk tank (black)",
+    "Name": "Punk tank (Black)",
     "Layer": "Body",
-    "Key": "Body:Punk tank (black)",
+    "Key": "Body:Punk tank (Black)",
     "Source": "",
     "Order": 30,
     "Count": 188,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
-    "Name": "Punk tank (white)",
+    "Name": "Punk tank (White)",
     "Layer": "Body",
-    "Key": "Body:Punk tank (white)",
+    "Key": "Body:Punk tank (White)",
     "Source": "",
     "Order": 30,
     "Count": 188,
@@ -2002,9 +2002,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Racetrack jacket (blue)",
+    "Name": "Racetrack jacket (Blue)",
     "Layer": "Body",
-    "Key": "Body:Racetrack jacket (blue)",
+    "Key": "Body:Racetrack jacket (Blue)",
     "Source": "",
     "Order": 30,
     "Count": 188,
@@ -2013,9 +2013,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Racetrack jacket (red)",
+    "Name": "Racetrack jacket (Red)",
     "Layer": "Body",
-    "Key": "Body:Racetrack jacket (red)",
+    "Key": "Body:Racetrack jacket (Red)",
     "Source": "",
     "Order": 30,
     "Count": 188,
@@ -2024,9 +2024,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Racetrack jacket (yellow)",
+    "Name": "Racetrack jacket (Yellow)",
     "Layer": "Body",
-    "Key": "Body:Racetrack jacket (yellow)",
+    "Key": "Body:Racetrack jacket (Yellow)",
     "Source": "",
     "Order": 30,
     "Count": 188,
@@ -2046,9 +2046,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Raised Brow",
+    "Name": "Raised brow",
     "Layer": "Eyes",
-    "Key": "Eyes:Raised Brow",
+    "Key": "Eyes:Raised brow",
     "Source": "",
     "Order": 50,
     "Count": 888,
@@ -2068,9 +2068,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Reading Glasses (bored)",
+    "Name": "Reading glasses (Bored)",
     "Layer": "Eyes",
-    "Key": "Eyes:Reading Glasses (bored)",
+    "Key": "Eyes:Reading glasses (Bored)",
     "Source": "",
     "Order": 50,
     "Count": 333,
@@ -2079,9 +2079,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Reading Glasses (serious)",
+    "Name": "Reading glasses (Serious)",
     "Layer": "Eyes",
-    "Key": "Eyes:Reading Glasses (serious)",
+    "Key": "Eyes:Reading glasses (Serious)",
     "Source": "",
     "Order": 50,
     "Count": 333,
@@ -2134,9 +2134,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Roman Armour",
+    "Name": "Roman armour",
     "Layer": "Body",
-    "Key": "Body:Roman Armour",
+    "Key": "Body:Roman armour",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -2145,9 +2145,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Roman Helmet",
+    "Name": "Roman helmet",
     "Layer": "Head",
-    "Key": "Head:Roman Helmet",
+    "Key": "Head:Roman helmet",
     "Source": "",
     "Order": 60,
     "Count": 222,
@@ -2167,20 +2167,20 @@
     "Status": "Approved"
   },
   {
-    "Name": "Sailor Jacket",
+    "Name": "Sailor jacket",
     "Layer": "Body",
-    "Key": "Body:Sailor Jacket",
+    "Key": "Body:Sailor jacket",
     "Source": "",
     "Order": 30,
     "Count": 222,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine",
     "Status": "Approved"
   },
   {
-    "Name": "Sailor Shirt",
+    "Name": "Sailor shirt",
     "Layer": "Body",
-    "Key": "Body:Sailor Shirt",
+    "Key": "Body:Sailor shirt",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -2200,9 +2200,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Scarf (orange)",
+    "Name": "Scarf (Orange)",
     "Layer": "Body",
-    "Key": "Body:Scarf (orange)",
+    "Key": "Body:Scarf (Orange)",
     "Source": "",
     "Order": 30,
     "Count": 188,
@@ -2229,7 +2229,7 @@
     "Order": 40,
     "Count": 969,
     "Force": "",
-    "Exclude": "Eyes:Serious,Eyes:Horn rimmed (serious),Eyes:Reading Glasses (serious)",
+    "Exclude": "Eyes:Serious,Eyes:Horn rimmed (Serious),Eyes:Reading glasses (Serious)",
     "Status": "Approved"
   },
   {
@@ -2343,9 +2343,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Solana T-Shirt",
+    "Name": "Solana t-shirt",
     "Layer": "Body",
-    "Key": "Body:Solana T-Shirt",
+    "Key": "Body:Solana t-shirt",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -2354,9 +2354,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Space Suit",
+    "Name": "Space suit",
     "Layer": "Body",
-    "Key": "Body:Space Suit",
+    "Key": "Body:Space suit",
     "Source": "",
     "Order": 30,
     "Count": 222,
@@ -2365,20 +2365,20 @@
     "Status": "Approved"
   },
   {
-    "Name": "Space Warrior",
+    "Name": "Space warrior",
     "Layer": "Body",
-    "Key": "Body:Space Warrior",
+    "Key": "Body:Space warrior",
     "Source": "",
     "Order": 30,
     "Count": 222,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket,Head:Bucket Hat (yellow),Head:Bucket Hat (black),Head:Bucket Hat (teal),Head:Bucket Hat (red)",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket,Head:Bucket hat (Yellow),Head:Bucket hat (Black),Head:Bucket hat (Teal),Head:Bucket hat (Red)",
     "Status": "Approved"
   },
   {
-    "Name": "Star Glasses",
+    "Name": "Star glasses",
     "Layer": "Eyes",
-    "Key": "Eyes:Star Glasses",
+    "Key": "Eyes:Star glasses",
     "Source": "",
     "Order": 50,
     "Count": 444,
@@ -2394,17 +2394,17 @@
     "Order": 50,
     "Count": 444,
     "Force": "",
-    "Exclude": "Head:Bucket Hat (yellow),Head:Bucket Hat (red),Head:Bucket Hat (navy),Head:Bucket Hat (teal),Head:Bucket Hat (black),Head:Headset (Light),Head:Headset (Dark)",
+    "Exclude": "Head:Bucket hat (Yellow),Head:Bucket hat (Red),Head:Bucket hat (Navy),Head:Bucket hat (Teal),Head:Bucket hat (Black),Head:Headphones (Light),Head:Headphones (Dark)",
     "Status": "Approved"
   },
   {
-    "Name": "Steampunk Glasses",
+    "Name": "Steampunk glasses",
     "Layer": "Head",
-    "Key": "Head:Steampunk Glasses",
+    "Key": "Head:Steampunk glasses",
     "Source": "",
     "Order": 60,
     "Count": 188,
-    "Force": "Eyes:Angry,Eyes:Delighted,Eyes:Glowing,Eyes:Bored,Eyes:Laser,Eyes:Closed,Eyes:Normal,Eyes:Raised Brow,Eyes:Scheming,Eyes:Serious,Eyes:Trippy,Eyes:Wink",
+    "Force": "Eyes:Angry,Eyes:Delighted,Eyes:Glowing,Eyes:Bored,Eyes:Laser,Eyes:Closed,Eyes:Normal,Eyes:Raised brow,Eyes:Scheming,Eyes:Serious,Eyes:Trippy,Eyes:Wink",
     "Exclude": "",
     "Status": "Approved"
   },
@@ -2453,9 +2453,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Tints (blue)",
+    "Name": "Tints (Blue)",
     "Layer": "Eyes",
-    "Key": "Eyes:Tints (blue)",
+    "Key": "Eyes:Tints (Blue)",
     "Source": "",
     "Order": 50,
     "Count": 333,
@@ -2464,9 +2464,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Tints (green)",
+    "Name": "Tints (Green)",
     "Layer": "Eyes",
-    "Key": "Eyes:Tints (green)",
+    "Key": "Eyes:Tints (Green)",
     "Source": "",
     "Order": 50,
     "Count": 333,
@@ -2475,9 +2475,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Tints (red)",
+    "Name": "Tints (Red)",
     "Layer": "Eyes",
-    "Key": "Eyes:Tints (red)",
+    "Key": "Eyes:Tints (Red)",
     "Source": "",
     "Order": 50,
     "Count": 333,
@@ -2486,9 +2486,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Tints (yellow)",
+    "Name": "Tints (Yellow)",
     "Layer": "Eyes",
-    "Key": "Eyes:Tints (yellow)",
+    "Key": "Eyes:Tints (Yellow)",
     "Source": "",
     "Order": 50,
     "Count": 333,
@@ -2504,13 +2504,13 @@
     "Order": 65,
     "Count": 969,
     "Force": "",
-    "Exclude": "Eyes:Serious,Body:Assassin,Eyes:Horn rimmed (serious),Eyes:Reading Glasses (serious)",
+    "Exclude": "Eyes:Serious,Body:Assassin,Eyes:Horn rimmed (Serious),Eyes:Reading glasses (Serious)",
     "Status": "Approved"
   },
   {
-    "Name": "Top Hat",
+    "Name": "Top hat",
     "Layer": "Head",
-    "Key": "Head:Top Hat",
+    "Key": "Head:Top hat",
     "Source": "",
     "Order": 60,
     "Count": 333,
@@ -2519,31 +2519,31 @@
     "Status": "Approved"
   },
   {
-    "Name": "Tracksuit (black)",
+    "Name": "Tracksuit (Black)",
     "Layer": "Body",
-    "Key": "Body:Tracksuit (black)",
+    "Key": "Body:Tracksuit (Black)",
     "Source": "",
     "Order": 30,
     "Count": 144,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
-    "Name": "Tracksuit (navy)",
+    "Name": "Tracksuit (Navy)",
     "Layer": "Body",
-    "Key": "Body:Tracksuit (navy)",
+    "Key": "Body:Tracksuit (Navy)",
     "Source": "",
     "Order": 30,
     "Count": 144,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine",
     "Status": "Approved"
   },
   {
-    "Name": "Tracksuit (red)",
+    "Name": "Tracksuit (Red)",
     "Layer": "Body",
-    "Key": "Body:Tracksuit (red)",
+    "Key": "Body:Tracksuit (Red)",
     "Source": "",
     "Order": 30,
     "Count": 144,
@@ -2552,9 +2552,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Tracksuit (teal)",
+    "Name": "Tracksuit (Teal)",
     "Layer": "Body",
-    "Key": "Body:Tracksuit (teal)",
+    "Key": "Body:Tracksuit (Teal)",
     "Source": "",
     "Order": 30,
     "Count": 144,
@@ -2563,9 +2563,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Tracksuit (yellow)",
+    "Name": "Tracksuit (Yellow)",
     "Layer": "Body",
-    "Key": "Body:Tracksuit (yellow)",
+    "Key": "Body:Tracksuit (Yellow)",
     "Source": "",
     "Order": 30,
     "Count": 144,
@@ -2625,7 +2625,7 @@
     "Order": 30,
     "Count": 222,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (navy),Head:Baseball hat (navy),Body:Varsity Jacket (navy),Head:Beanie (navy),Head:Bucket Hat (navy),Body:Tracksuit (navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto Headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor Jacket",
+    "Exclude": "Head:Back baseball hat (Navy),Head:Baseball hat (Navy),Body:Varsity jacket (Navy),Head:Beanie (Navy),Head:Bucket hat (Navy),Body:Tracksuit (Navy),Fur:Navy,Head:Beret,Head:Dad hat,Head:Fiddler hat,Head:Naruto headband,Eyes:Oversize,Body:Abyss,Body:Weed sweater,Body:Sailor jacket",
     "Status": "Approved"
   },
   {
@@ -2662,9 +2662,9 @@
     "Status": "Approved"
   },
   {
-    "Name": "Varsity Jacket (green)",
+    "Name": "Varsity jacket (Green)",
     "Layer": "Body",
-    "Key": "Body:Varsity Jacket (green)",
+    "Key": "Body:Varsity jacket (Green)",
     "Source": "",
     "Order": 30,
     "Count": 188,
@@ -2673,20 +2673,20 @@
     "Status": "Approved"
   },
   {
-    "Name": "Varsity Jacket (navy)",
+    "Name": "Varsity jacket (Navy)",
     "Layer": "Body",
-    "Key": "Body:Varsity Jacket (navy)",
+    "Key": "Body:Varsity jacket (Navy)",
     "Source": "",
     "Order": 30,
     "Count": 188,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine",
     "Status": "Approved"
   },
   {
-    "Name": "Varsity Jacket (red)",
+    "Name": "Varsity jacket (Red)",
     "Layer": "Body",
-    "Key": "Body:Varsity Jacket (red)",
+    "Key": "Body:Varsity jacket (Red)",
     "Source": "",
     "Order": 30,
     "Count": 188,
@@ -2706,14 +2706,14 @@
     "Status": "Approved"
   },
   {
-    "Name": "VR Headset",
+    "Name": "VR headset",
     "Layer": "Eyes",
-    "Key": "Eyes:VR Headset",
+    "Key": "Eyes:VR headset",
     "Source": "",
     "Order": 50,
     "Count": 444,
     "Force": "",
-    "Exclude": "Mouth:Bubble Gum",
+    "Exclude": "Mouth:Bubble gum",
     "Status": "Approved"
   },
   {
@@ -2746,7 +2746,7 @@
     "Order": 30,
     "Count": 222,
     "Force": "",
-    "Exclude": "Head:Back Baseball hat (black),Head:Beanie (black),Head:Bucket Hat (black),Head:Doo rag (Black),Head:Pork Pie hat,Head:Punk hair (black),Eyes:Pixel glasses,Body:Hoodie down (black),Body:Polo (black),Body:Puff jacket (black),Body:Punk Jacket,Body:Punk tank (black),Body:Space Warrior,Body:Tracksuit (black),Body:Turtleneck,Body:Hoodie up (black),Body:Assassin,Body:Neo's Gabardine",
+    "Exclude": "Head:Back baseball hat (Black),Head:Beanie (Black),Head:Bucket hat (Black),Head:Doo rag (Black),Head:Pork pie hat,Head:Punk hair (Black),Eyes:Pixel glasses,Body:Hoodie down (Black),Body:Polo (Black),Body:Puff jacket (Black),Body:Punk jacket,Body:Punk tank (Black),Body:Space warrior,Body:Tracksuit (Black),Body:Turtleneck,Body:Hoodie up (Black),Body:Assassin,Body:Neo's gabardine",
     "Status": "Approved"
   },
   {
@@ -2794,14 +2794,14 @@
     "Status": "Approved"
   },
   {
-    "Name": "Wizard Hat",
+    "Name": "Wizard hat",
     "Layer": "Head",
-    "Key": "Head:Wizard Hat",
+    "Key": "Head:Wizard hat",
     "Source": "",
     "Order": 60,
     "Count": 333,
     "Force": "",
-    "Exclude": "Body:Neo's Gabardine",
+    "Exclude": "Body:Neo's gabardine",
     "Status": "Approved"
   },
   {

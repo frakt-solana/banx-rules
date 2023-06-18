@@ -14,6 +14,8 @@ airtable.configure({
     "patAMXj3c4gedrbRE.5e3eefbdc79625812d0fd2290d103a67d6eb846f3810cdd64696b852a5224e70",
 });
 
+const base = airtable.base("appuQP7QzvQwbl6dP");
+
 const setsCountsByKey = setsCounts.reduce((acc, obj) => {
   const layer = Object.keys(obj)[0];
 
@@ -21,8 +23,6 @@ const setsCountsByKey = setsCounts.reduce((acc, obj) => {
 
   return { ...acc, [`${layer}:${obj[layer]}`]: count };
 }, {});
-
-const base = airtable.base("appuQP7QzvQwbl6dP");
 
 const getApprovedSheet = async () => {
   const table = base("Approve");
@@ -35,15 +35,22 @@ const getApprovedSheet = async () => {
 
 const getMaxedOutTraits = (approvedSets) => {
   const approvedTraitsCount = approvedSets.reduce((acc, set) => {
-    const keyValues = Object.keys(set).map((key) => `${key}:${set[key]}`);
+    const keyValues = Object.keys(set)
+      .filter((key) => LAYERS_NAMES.includes(key))
+      .map((key) => `${key}:${set[key]}`);
 
     return keyValues.reduce((counts, key) => {
       return { ...counts, [key]: counts[key] ? counts[key] + 1 : 1 };
     }, acc);
-  }, setsCountsByKey);
+  }, {});
 
   const maxed = Object.keys(approvedTraitsCount).reduce((acc, key) => {
     const trait = traits.find((i) => i.Key === key);
+
+    if (!traits.find((i) => i.Key === key)) {
+      console.log("# cant find", key);
+    }
+
     return trait
       ? { ...acc, [key]: approvedTraitsCount[key] >= trait.Count }
       : acc;
@@ -84,14 +91,21 @@ const sortRecordsByRaritySystem = (records, maxedOutTraits) => {
 
     let sum = 0;
 
-    const traits = Object.keys(set).map((layer) => `${layer}:${set[layer]}`);
+    const traits = Object.keys(set)
+      .filter((key) => LAYERS_NAMES.includes(key))
+      .map((layer) => `${layer}:${set[layer]}`);
 
     for (const trait of traits) {
       if (maxedOutTraits.counts[trait]) {
-        const n =
-          1 /
-          (maxedOutTraits.counts[trait].current /
-            maxOccurancesOfAttribute[trait.split(":")[0]]);
+        const traitLayer = trait.split(":")[0];
+        const traitCount =
+          traitLayer === "Fur"
+            ? maxedOutTraits.counts[trait].current / 40
+            : traitLayer === "Head"
+            ? maxedOutTraits.counts[trait].current * 1.3
+            : maxedOutTraits.counts[trait].current;
+        const maxTraitCount = maxOccurancesOfAttribute[traitLayer];
+        const n = 1 / (traitCount / maxTraitCount);
 
         sum += n;
       } else {
