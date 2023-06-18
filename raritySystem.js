@@ -20,6 +20,48 @@ const TIERS = _.sortBy(
   "chance"
 );
 
+const LAYERS_NAMES = ["Background", "Fur", "Body", "Mouth", "Head", "Eyes"];
+
+const legendaryFraktCustomRanks = [19976, 19977];
+const legendaryGnomieCustomRanks = [19978, 19979];
+const epicCustomRanks = [19980, 19981, 19982, 19983];
+const rareCustomRanks = [19984, 19985, 19986, 19987];
+const uncommonCustomRanks = [19988, 19989, 19990, 19991];
+const commonCustomRanks = [19992, 19993, 19994, 19995];
+const publicCustomRanks = [19996, 19997, 19998, 19999, 20000];
+
+const allCustomRanks = [
+  ...legendaryFraktCustomRanks,
+  ...legendaryGnomieCustomRanks,
+  ...epicCustomRanks,
+  ...rareCustomRanks,
+  ...uncommonCustomRanks,
+  ...commonCustomRanks,
+  ...publicCustomRanks,
+];
+
+const getDescriptionBasedOnRank = (rank) => {
+  if (allCustomRanks.includes(rank)) {
+    //TODO: custom description
+  }
+
+  const record = records.find((r) => r.rank === rank);
+
+  let description = `Banx is the frakt protocol's collection. Each Banx unlocks a share of revenue and governance proportional to its Partner points. Every Banx makes you a first-class user of the protocol, with discounts and boosts proportional to its Player points. Art by Tainaker, Utility by frakt, Community by you. `;
+
+  if (record.fields.Set) {
+    const setName = record.fields.Set;
+    const setBoss = record.fields["Set Boss"];
+    description += `This Banx is part of the ${setName} Set. `;
+
+    if (setBoss) {
+      description += `This Banx is the ${setBoss}.`;
+    }
+  }
+
+  return description.trim();
+};
+
 const getBaseBanxMetadata = ({ tier, oldAttributes, rank }) => {
   const pointsAttributes = _.filter(
     oldAttributes,
@@ -29,16 +71,17 @@ const getBaseBanxMetadata = ({ tier, oldAttributes, rank }) => {
   );
   const { imageUrl, imageAttributes } = getImage(rank);
 
+  const description = getDescriptionBasedOnRank(rank);
   return {
-    name: "Banx",
+    name: `Banx #${rank}`,
     symbol: "BANX",
-    description: "",
+    description,
     seller_fee_basis_points: 420,
     external_url: "https://frakt.xyz",
     image,
     attributes: [
-      ...imageAttributes,
       ...pointsAttributes,
+      ...imageAttributes,
       { trait_type: "Tier", value: tier.name },
     ],
     properties: {
@@ -57,12 +100,18 @@ const getBaseBanxMetadata = ({ tier, oldAttributes, rank }) => {
 };
 
 const getImage = (rank) => {
+  if (allCustomRanks.includes(rank)) {
+    return { imageUrl, imageAttributes: [] };
+  }
+
   const imageUrl = `https://banxnft.s3.amazonaws.com/images/${rank}.png`;
   const attributes = records.find((rec) => rec.rank === rank).fields;
-  const imageAttributes = Object.keys(imageAttributes).map((key) => ({
-    trait_type: key,
-    value: imageAttributes[key],
-  }));
+  const imageAttributes = Object.keys(attributes)
+    .filter((key) => LAYERS_NAMES.includes(key))
+    .map((key) => ({
+      trait_type: key,
+      value: imageAttributes[key],
+    }));
   // TODO: get image based on tier
   return { imageUrl, imageAttributes };
 };
@@ -71,6 +120,8 @@ const filterTakenRanks = (rank) => {
   const takenRanks = [1, 3, 545];
   return !takenRanks.includes(rank);
 };
+
+// TODO add 10 - 1/1 to traits based an 15 to public mint
 
 const getTraitsBasedOnInputNFT = (inputMetadata) => {
   const metadataObj = JSON.parse(inputMetadata);
@@ -95,6 +146,23 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
 
         const banxMetadata = getBaseBanxMetadata({
           tier: TIERS[1],
+          oldAttributes: metadataObj.attributes,
+          rank,
+        });
+      }
+
+      // ! TRYING CHANCES IN 1/1
+
+      const customTry = _.sample(
+        [..._.range(10, 151 + 1), ...legendaryFraktCustomRanks].filter(
+          filterTakenRanks
+        )
+      );
+      if (legendaryFraktCustomRanks.includes(customTry)) {
+        const rank = customTry;
+
+        const banxMetadata = getBaseBanxMetadata({
+          tier: TIERS[0],
           oldAttributes: metadataObj.attributes,
           rank,
         });
@@ -141,19 +209,16 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
           rank,
         });
       }
-
-      // TODO: mint
-      const banxMetadata = getBaseBanxMetadata({
-        tier: TIERS[1],
-        oldAttributes: metadataObj.attributes,
-        rank,
-      });
     }
 
     // ! TIER EPIC
     if (shape === "Eye" || (shape === "Star" && color === "Magenta")) {
       // TODO: mint
-      const allowedRanks = _.range(156, 1600 + 1).filter(filterTakenRanks);
+      const allowedRanks = [
+        ..._.range(201, 1600 + 1),
+        ...epicCustomRanks,
+      ].filter(filterTakenRanks);
+
       const rank = _.sample(_.shuffle(allowedRanks));
       const banxMetadata = getBaseBanxMetadata({
         tier: TIERS[2],
@@ -168,7 +233,10 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
       (shape === "Portal" && color === "Magenta") ||
       (shape === "Net" && color === "Magenta")
     ) {
-      const allowedRanks = _.range(1601, 3880 + 1).filter(filterTakenRanks);
+      const allowedRanks = [
+        ..._.range(1601, 3880 + 1),
+        ...rareCustomRanks,
+      ].filter(filterTakenRanks);
       const rank = _.sample(_.shuffle(allowedRanks));
       const banxMetadata = getBaseBanxMetadata({
         tier: TIERS[3],
@@ -185,7 +253,10 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
       (shape === "Net" && color === "Red") ||
       (shape === "Portal" && color === "Orange")
     ) {
-      const allowedRanks = _.range(3881, 11440 + 1).filter(filterTakenRanks);
+      const allowedRanks = [
+        ..._.range(3881, 11440 + 1),
+        ...uncommonCustomRanks,
+      ].filter(filterTakenRanks);
       const rank = _.sample(_.shuffle(allowedRanks));
       const banxMetadata = getBaseBanxMetadata({
         tier: TIERS[4],
@@ -200,7 +271,10 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
       (shape === "Net" && color === "Orange") ||
       (shape === "Net" && color === "White")
     ) {
-      const allowedRanks = _.range(11441, 19975 + 1).filter(filterTakenRanks);
+      const allowedRanks = [
+        ..._.range(11441, 19975 + 1),
+        ...commonCustomRanks,
+      ].filter(filterTakenRanks);
       const rank = _.sample(_.shuffle(allowedRanks));
       const banxMetadata = getBaseBanxMetadata({
         tier: TIERS[5],
@@ -220,7 +294,10 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
 
     //! TIER LEGENDARY
     if (gnomieRank <= 55) {
-      const allowedRanks = _.range(101, 155 + 1).filter(filterTakenRanks);
+      const allowedRanks = [
+        ..._.range(101, 155 + 1),
+        ...legendaryGnomieCustomRanks,
+      ].filter(filterTakenRanks);
       const rank = _.sample(_.shuffle(allowedRanks));
 
       const banxMetadata = getBaseBanxMetadata({
@@ -233,11 +310,14 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
     //
     // ! TIER EPIC
     if (gnomieRank <= 445) {
-      const allowedRanks = _.range(156, 1600 + 1).filter(filterTakenRanks);
+      const allowedRanks = [
+        ..._.range(201, 1600 + 1),
+        ...epicCustomRanks,
+      ].filter(filterTakenRanks);
       const rank = _.sample(_.shuffle(allowedRanks));
 
       const banxMetadata = getBaseBanxMetadata({
-        tier: TIERS[1],
+        tier: TIERS[2],
         oldAttributes: metadataObj.attributes,
         rank,
       });
@@ -246,11 +326,14 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
     //
     // ! TIER RARE
     if (gnomieRank <= 1080) {
-      const allowedRanks = _.range(1601, 3880 + 1).filter(filterTakenRanks);
+      const allowedRanks = [
+        ..._.range(1601, 3880 + 1),
+        ...rareCustomRanks,
+      ].filter(filterTakenRanks);
       const rank = _.sample(_.shuffle(allowedRanks));
 
       const banxMetadata = getBaseBanxMetadata({
-        tier: TIERS[1],
+        tier: TIERS[3],
         oldAttributes: metadataObj.attributes,
         rank,
       });
@@ -259,11 +342,14 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
     //
     // ! TIER UNCOMMON
     if (gnomieRank <= 3180) {
-      const allowedRanks = _.range(3881, 11440 + 1).filter(filterTakenRanks);
+      const allowedRanks = [
+        ..._.range(3881, 11440 + 1),
+        ...uncommonCustomRanks,
+      ].filter(filterTakenRanks);
       const rank = _.sample(_.shuffle(allowedRanks));
 
       const banxMetadata = getBaseBanxMetadata({
-        tier: TIERS[1],
+        tier: TIERS[4],
         oldAttributes: metadataObj.attributes,
         rank,
       });
@@ -272,15 +358,87 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
     //
     // ! TIER COMMON
     if (gnomieRank <= 5555) {
-      const allowedRanks = _.range(11441, 19975 + 1).filter(filterTakenRanks);
+      const allowedRanks = [
+        ..._.range(11441, 19975 + 1),
+        ...commonCustomRanks,
+      ].filter(filterTakenRanks);
       const rank = _.sample(_.shuffle(allowedRanks));
 
       const banxMetadata = getBaseBanxMetadata({
-        tier: TIERS[1],
+        tier: TIERS[5],
         oldAttributes: metadataObj.attributes,
         rank,
       });
     }
+  }
+};
+
+const getPublicMintNFT = () => {
+  const bet = _.random(100, true);
+
+  // ! TIER 1/1
+  if (bet <= TIERS[0].chance) {
+    // TODO generate 1/1
+  }
+
+  // ! TIER LEGENDARY
+  if (bet <= TIERS[1].chance) {
+    const allowedRanks = _.range(156, 200 + 1).filter(filterTakenRanks);
+    const rank = _.sample(_.shuffle(allowedRanks));
+
+    const banxMetadata = getBaseBanxMetadata({
+      tier: TIERS[1],
+      oldAttributes: [],
+      rank,
+    });
+  }
+
+  // ! TIER EPIC
+  if (bet <= TIERS[2].chance) {
+    const allowedRanks = _.range(201, 1600 + 1).filter(filterTakenRanks);
+    const rank = _.sample(_.shuffle(allowedRanks));
+
+    const banxMetadata = getBaseBanxMetadata({
+      tier: TIERS[2],
+      oldAttributes: [],
+      rank,
+    });
+  }
+
+  // ! TIER RARE
+  if (bet <= TIERS[3].chance) {
+    const allowedRanks = _.range(1601, 3880 + 1).filter(filterTakenRanks);
+    const rank = _.sample(_.shuffle(allowedRanks));
+
+    const banxMetadata = getBaseBanxMetadata({
+      tier: TIERS[3],
+      oldAttributes: [],
+      rank,
+    });
+  }
+
+  // ! TIER UNCOMMON
+  if (bet <= TIERS[4].chance) {
+    const allowedRanks = _.range(3881, 11440 + 1).filter(filterTakenRanks);
+    const rank = _.sample(_.shuffle(allowedRanks));
+
+    const banxMetadata = getBaseBanxMetadata({
+      tier: TIERS[4],
+      oldAttributes: [],
+      rank,
+    });
+  }
+
+  // ! TIER COMMON
+  if (bet <= TIERS[5].chance) {
+    const allowedRanks = _.range(3881, 11440 + 1).filter(filterTakenRanks);
+    const rank = _.sample(_.shuffle(allowedRanks));
+
+    const banxMetadata = getBaseBanxMetadata({
+      tier: TIERS[5],
+      oldAttributes: [],
+      rank,
+    });
   }
 };
 
