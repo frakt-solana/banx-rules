@@ -1,4 +1,4 @@
-import _ from "lodash";
+import _, { includes, range } from "lodash";
 import records from "./data/recordsSortedByTraitsRarity.json" assert { type: "json" };
 import gnomiesRankedByRarity from "./data/gnomiesRarity.json" assert { type: "json" };
 
@@ -40,6 +40,59 @@ const allCustomRanks = [
   ...publicCustomRanks,
 ];
 
+const allCustomRanksWithoutPublic = [
+  ...legendaryFraktCustomRanks,
+  ...legendaryGnomieCustomRanks,
+  ...epicCustomRanks,
+  ...rareCustomRanks,
+  ...uncommonCustomRanks,
+  ...commonCustomRanks,
+];
+
+const filterTakenUtilityRanks = (utilityRank) => {
+  const takenUtilityRank = [1, 4, 6];
+  return !takenUtilityRank.includes(utilityRank);
+};
+
+const utilityRanksWithTraits = [
+  ..._.range(1, 5 + 1).map(() => [
+    { trait_type: "player points", value: 88 },
+    { trait_type: "partner points", value: 880 },
+  ]),
+  ..._.range(1, 10 + 1).map(() => [
+    { trait_type: "player points", value: 58 },
+    { trait_type: "partner points", value: 587 },
+  ]),
+  ..._.range(1, 10 + 1).map(() => [
+    { trait_type: "player points", value: 44 },
+    { trait_type: "partner points", value: 440 },
+  ]),
+  ..._.range(1, 10 + 1).map(() => [
+    { trait_type: "player points", value: 35 },
+    { trait_type: "partner points", value: 352 },
+  ]),
+  ...range(1, 20 + 1).map(() => [
+    { trait_type: "player points", value: 17 },
+    { trait_type: "partner points", value: 176 },
+  ]),
+  ...range(1, 30 + 1).map(() => [
+    { trait_type: "player points", value: 11 },
+    { trait_type: "partner points", value: 117 },
+  ]),
+  ...range(1, 80 + 1).map(() => [
+    { trait_type: "player points", value: 8 },
+    { trait_type: "partner points", value: 88 },
+  ]),
+  ...range(1, 1145 + 1).map(() => [
+    { trait_type: "player points", value: 1 },
+    { trait_type: "partner points", value: 63 },
+  ]),
+  ...range(1, 3130 + 1).map(() => [
+    { trait_type: "player points", value: 1 },
+    { trait_type: "partner points", value: 63 },
+  ]),
+];
+
 const getDescriptionBasedOnRank = (rank) => {
   if (allCustomRanks.includes(rank)) {
     //TODO: custom description
@@ -78,7 +131,7 @@ const getBaseBanxMetadata = ({ tier, oldAttributes, rank }) => {
     description,
     seller_fee_basis_points: 420,
     external_url: "https://frakt.xyz",
-    image,
+    image: imageUrl,
     attributes: [
       ...pointsAttributes,
       ...imageAttributes,
@@ -101,6 +154,7 @@ const getBaseBanxMetadata = ({ tier, oldAttributes, rank }) => {
 
 const getImage = (rank) => {
   if (allCustomRanks.includes(rank)) {
+    const imageUrl = `https://banxnft.s3.amazonaws.com/images/custom.png`;
     return { imageUrl, imageAttributes: [] };
   }
 
@@ -158,6 +212,7 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
           filterTakenRanks
         )
       );
+
       if (legendaryFraktCustomRanks.includes(customTry)) {
         const rank = customTry;
 
@@ -374,69 +429,103 @@ const getTraitsBasedOnInputNFT = (inputMetadata) => {
 };
 
 const getPublicMintNFT = () => {
-  const bet = _.random(100, true);
+  // get random rank
+  const rank = _.sample(
+    _.shuffle(
+      _.range([1, 20000])
+        .filter(
+          (rank) =>
+            !allCustomRanksWithoutPublic.includes(rank) &&
+            !_.range(1, 155 + 1).includes(rank)
+        )
+        .filter(filterTakenRanks)
+    )
+  );
 
   // ! TIER 1/1
-  if (bet <= TIERS[0].chance) {
-    // TODO generate 1/1
+  if (publicCustomRanks.includes(rank)) {
+    const banxMetadata = getBaseBanxMetadata({
+      tier: TIERS[0],
+      oldAttributes: [
+        { trait_type: "player points", value: 24 },
+        { trait_type: "partner points", value: 1021 },
+      ],
+      rank,
+    });
   }
 
   // ! TIER LEGENDARY
-  if (bet <= TIERS[1].chance) {
-    const allowedRanks = _.range(156, 200 + 1).filter(filterTakenRanks);
-    const rank = _.sample(_.shuffle(allowedRanks));
+  if (rank <= 200) {
+    const highestUtilityRank = _.first(
+      _.range(0, 166).filter(filterTakenUtilityRanks)
+    );
+    const traits = utilityRanksWithTraits[highestUtilityRank];
+
+    //TODO: save selected rank
 
     const banxMetadata = getBaseBanxMetadata({
       tier: TIERS[1],
-      oldAttributes: [],
+      oldAttributes: traits,
       rank,
     });
   }
 
   // ! TIER EPIC
-  if (bet <= TIERS[2].chance) {
-    const allowedRanks = _.range(201, 1600 + 1).filter(filterTakenRanks);
-    const rank = _.sample(_.shuffle(allowedRanks));
+  if (rank <= 1600) {
+    const highestUtilityRank = _.first(
+      _.range(27, 1161).filter(filterTakenUtilityRanks)
+    );
+
+    const traits = utilityRanksWithTraits[highestUtilityRank];
 
     const banxMetadata = getBaseBanxMetadata({
       tier: TIERS[2],
-      oldAttributes: [],
+      oldAttributes: traits,
       rank,
     });
   }
 
   // ! TIER RARE
-  if (bet <= TIERS[3].chance) {
-    const allowedRanks = _.range(1601, 3880 + 1).filter(filterTakenRanks);
-    const rank = _.sample(_.shuffle(allowedRanks));
+  if (rank <= 3880) {
+    const highestUtilityRank = _.first(
+      _.range(166, 5555).filter(filterTakenUtilityRanks)
+    );
+
+    const traits = utilityRanksWithTraits[highestUtilityRank];
 
     const banxMetadata = getBaseBanxMetadata({
       tier: TIERS[3],
-      oldAttributes: [],
+      oldAttributes: traits,
       rank,
     });
   }
 
   // ! TIER UNCOMMON
-  if (bet <= TIERS[4].chance) {
-    const allowedRanks = _.range(3881, 11440 + 1).filter(filterTakenRanks);
-    const rank = _.sample(_.shuffle(allowedRanks));
+  if (rank <= 11440) {
+    const highestUtilityRank = _.first(
+      _.range(11441, 5555).filter(filterTakenUtilityRanks)
+    );
+
+    const traits = utilityRanksWithTraits[highestUtilityRank];
 
     const banxMetadata = getBaseBanxMetadata({
       tier: TIERS[4],
-      oldAttributes: [],
+      oldAttributes: traits,
       rank,
     });
   }
 
   // ! TIER COMMON
-  if (bet <= TIERS[5].chance) {
-    const allowedRanks = _.range(3881, 11440 + 1).filter(filterTakenRanks);
-    const rank = _.sample(_.shuffle(allowedRanks));
+  if (rank) {
+    const highestUtilityRank = _.first(
+      _.range(1161, 5555).filter(filterTakenUtilityRanks)
+    );
+
+    const traits = utilityRanksWithTraits[highestUtilityRank];
 
     const banxMetadata = getBaseBanxMetadata({
       tier: TIERS[5],
-      oldAttributes: [],
+      oldAttributes: traits,
       rank,
     });
   }
